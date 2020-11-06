@@ -142,6 +142,7 @@ if(text == 'map'):
 
 # NewsBR:
 if(text == 'news'):
+        apiurl = 'https://fortnite-api.com/v2/news/br'
         print('Starting News Bot...')
         response = requests.get(apiurl)
         print("\nSaving image")
