@@ -36,8 +36,7 @@ api = tweepy.API(auth)
 print('\nWelcome to FortniteTweetPoster V1,',username+'!')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
-print("Supported lines:\n\nshop = Post Item Shop\nnewsbr = Post Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image")
-print('newscr = Posts Creative News')
+print("Supported lines:\n\nshop = Post Item Shop\nnews = Post Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image")
 print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
 print('sizzy = its sizzy')
@@ -142,14 +141,27 @@ if(text == 'map'):
     time.sleep(5)
 
 # NewsBR:
-if(text == 'newsbr'):
-    print("Running news for",username)
-    api = tweepy.API(auth)
-    api.update_with_media("news.gif", "#Fortnite News\n\nSupport-a-Creator Code:",sac)
-    print('News has been posted succesfully to Twitter!')
-    print('Closing program...')
-    time.sleep(2)
-    exit()
+if(text == 'news'):
+        print('Starting News Bot...')
+        response = requests.get(apiurl)
+        print("\nSaving image")
+        url = response.json()["data"]["image"]
+        r = requests.get(url, allow_redirects=True)
+        open('feed.gif', 'wb').write(r.content)
+
+        print("\nSaved image")
+
+        today = date.today()
+        d = today.strftime("%m/%d/%y")
+
+        response = requests.get(apiurl)
+        url = response.json()["data"]["image"]
+
+        print('\nTweeting image...')
+        api = tweepy.API(auth)
+        api.update_with_media("feed.gif","#Fortnite News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
+        print("\nTweeted image to",username+'!')
+        time.sleep(5)
 
 # Text command
 if(text == 'text'):
