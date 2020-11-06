@@ -26,10 +26,12 @@ username = 'XXXXXXX'
 
 #-----------------------------------------------------------------------------------------#
 
+# Grabs twitter api keys from settings
 auth = tweepy.OAuthHandler(twitAPIKey, twitAPISecretKey)
 auth.set_access_token(twitAccessToken, twitAccessTokenSecret)
 api = tweepy.API(auth)
 
+# Starts the program and prints commands
 print('\nWelcome to FortniteTweetPoster V1,',username+'!')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
@@ -41,6 +43,7 @@ print('sizzy = its sizzy')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
+
 # If user wants to post the shop, then....
 if(text == 'shop'):
     print("Running shop for FeversBot account.")
