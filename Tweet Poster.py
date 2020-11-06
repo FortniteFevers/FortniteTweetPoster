@@ -46,7 +46,7 @@ text = input ()
 # If user wants to post the shop, then....
 if(text == 'shop'):
     print("Running shop for",username)
-    url = 'https://api.nitestats.com/v1/shop/image?footer=Creator%20Code%3A%20CEPTNITE10'
+   url = 'https://api.nitestats.com/v1/shop/image?footer=Creator%20Code%3A%20'+str(sac)
     r = requests.get(url, allow_redirects=True)
     open('shop.png', 'wb').write(r.content)
     print("\nOpened shop.png")
