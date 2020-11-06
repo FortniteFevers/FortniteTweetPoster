@@ -4,11 +4,16 @@
 
 ----------------------
 
+Before you run the program, make sure you have installed all the requirements.
+
+----------------------
+
+
+----------------------
+
 ## Requirements
 
-- [Python 3.8](https://www.python.org/downloads/)
-- [Requests](http://docs.python-requests.org/en/master/user/install/)
-- [tweepy](https://www.tweepy.org/)
+**To install all the needed requirements, just simply run INSTALL PACKAGES.
 
 ----------------------
 
@@ -27,3 +32,5 @@ versionbot = Starts versionbot
 leaks = Posts the latest Fortnite leaks
 
 aes = Posts current AES key
+
+map = posts the current map
