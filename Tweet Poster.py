@@ -33,7 +33,7 @@ api = tweepy.API(auth)
 print('\nWelcome to FortniteTweetPoster V1,',username+'!')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
-print("Supported lines:\n\nshop = Post Item Shop\nnewsbr = Post Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image\nfrenzysue = let frenzy sue someone idk lol\ntajfam = tajfam or something #tajfam #tajnation")
+print("Supported lines:\n\nshop = Post Item Shop\nnewsbr = Post Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image\n")
 print('newscr = Posts Creative News')
 print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
@@ -95,24 +95,6 @@ if(text == 'exit'):
     print('\nExiting program....')
     time.sleep(1)
     exit()
-
-if(text == 'sizzy'):
-    print('\nAyo it sizzy leaks hi')
-    time.sleep(5)
-
-# Frenzy Sue:
-if(text == 'frenzysue'):
-    print('\nGood morning, Master Dave.')
-    print('\nDo you want to sue today?')
-    print('\nToday, your choices are Jinx, CyberDom, Nono, Sizzy, Thomas, or Fevers.\n')
-    time.sleep(5)
-
-# TajFam:
-if(text == 'tajfam'):
-    print('\nHey, taj here.')
-    print('\nI sing songs by travis scott for some reason')
-    print('\nAlso i am dating sizzy but dont tell anyone even doe its hella obvious')
-    time.sleep(5)
 
 # AES key:
 if(text == 'aes'):
