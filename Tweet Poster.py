@@ -25,6 +25,11 @@ twitAccessTokenSecret = 'XXXXXXX'
 username = 'XXXXXXX'
 sac = 'XXXXXX'
 
+# Item Shop Config - leave the same for default. If you want an image for the background instead, paste a image url in backgroundcolor.
+
+textcolor = 'ffffff'
+backgroundcolor = '1F1F1F'
+
 #-----------------------------------------------------------------------------------------#
 
 # Grabs twitter api keys from settings
@@ -46,7 +51,7 @@ text = input ()
 # If user wants to post the shop, then....
 if(text == 'shop'):
     print("Running shop for",username)
-   url = 'https://api.nitestats.com/v1/shop/image?footer=Creator%20Code%3A%20'+str(sac)
+    url = 'https://api.nitestats.com/v1/shop/image?footer=Creator%20Code%3A%20'+str(sac)+'&textcolor='+str(textcolor)+'&background='+str(backgroundcolor)
     r = requests.get(url, allow_redirects=True)
     open('shop.png', 'wb').write(r.content)
     print("\nOpened shop.png")
