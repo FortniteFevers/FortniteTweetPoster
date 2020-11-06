@@ -25,7 +25,7 @@ twitAccessTokenSecret = 'XXXXXXX'
 username = 'XXXXXXX'
 sac = 'XXXXXX'
 
-# Item Shop Config - leave the same for default. If you want an image for the background instead, paste a image url in backgroundcolor.
+# Item Shop Config - leave both configs the same for default. Background urls are NOT supported.
 
 textcolor = 'ffffff'
 backgroundcolor = '1F1F1F'
