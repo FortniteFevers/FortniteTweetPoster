@@ -119,7 +119,7 @@ if(text == 'aes'):
     time.sleep(5)
     exit()
 
-# Map command thingey idk:
+# Runs the map bot
 if(text == 'map'):
     print("\nStarting program...\n")
     url = 'https://media.fortniteapi.io/images/map.png'
@@ -152,7 +152,7 @@ if(text == 'newsbr'):
 
 # Text command
 if(text == 'text'):
-    print('\nWhat text do you want to tweet lil dude?\n')
+    print('\nWhat text do you want to tweet',username+'?\n')
     realtext = input()
     print("\nAre you sure you want to tweet this?\n")
     text = input ()
@@ -170,7 +170,7 @@ if(text == 'text'):
         time.sleep(2)
         exit()
         if(maybetweet == 'yes'):
-            print('What do you want to tweet?')
+            print('What text do you want to tweet',username+'?')
             textv2 = input ()
             api.update_status(textv2)
             print("\nTweeting...")
