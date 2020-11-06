@@ -24,9 +24,9 @@ Current commands are:
 
 shop = Posts current shop
 
-newsbr = Posts BR news
+news = Posts BR news
 
-newscr = Posts creative news
+newscr = Posts creative news (Coming soon)
 
 text = Posts any text of your choice
 
