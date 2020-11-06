@@ -31,3 +31,5 @@ leaks = Posts the latest Fortnite leaks
 aes = Posts current AES key
 
 map = posts the current map
+
+exit = exits the program
