@@ -1,6 +1,6 @@
 # FortniteTweetPoster
 
-Welcome to FortniteTweetPoster!
+## Welcome to FortniteTweetPoster!
 
 Current commands are:
 
