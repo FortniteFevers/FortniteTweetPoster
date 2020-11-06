@@ -1,0 +1,4 @@
+requests
+tweepy
+datetime
+pillow
