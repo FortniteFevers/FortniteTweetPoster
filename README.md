@@ -12,10 +12,7 @@ Before you run the program, make sure you have installed all the requirements.
 
 **To install all the needed requirements, just simply run INSTALL PACKAGES.**
 
-----------------------
 
-
-----------------------
 
 ## Before you run:
 
