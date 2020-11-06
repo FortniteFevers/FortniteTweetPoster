@@ -16,13 +16,14 @@ print("\nCurrent date:", d2)
 
 #-----------------------------------------------------------------------------------------#
 
-#  Put your Twitter API keys and username here!
+#  Put your Twitter API keys, username, and SAC here!
 
 twitAPIKey = 'XXXXXXX'
 twitAPISecretKey = 'XXXXXXX'
 twitAccessToken = 'XXXXXXXXXXXXXX'
 twitAccessTokenSecret = 'XXXXXXX'
 username = 'XXXXXXX'
+sac = 'XXXXXX'
 
 #-----------------------------------------------------------------------------------------#
 
@@ -53,7 +54,7 @@ if(text == 'shop'):
     print("\nOpened shop.png")
     print("\nSaved shop.png")
     api = tweepy.API(auth)
-    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: CEPTNITE10')
+    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code:',sac)
     print('Shop has been posted succesfully to',username+'!')
     print('Now closing program.')
     time.sleep(5)
@@ -87,7 +88,7 @@ if(text == 'versionbot'):
 if(text == 'leaks'):
     print("Running leaks for",username)
     api = tweepy.API(auth)
-    api.update_with_media(f'leaks.jpg', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code: CEPTNITE10')
+    api.update_with_media(f'leaks.jpg', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code:',sac)
     print('News has been posted succesfully to Twitter!')
     print('Closing program...')
     time.sleep(2)
@@ -144,7 +145,7 @@ if(text == 'map'):
 if(text == 'newsbr'):
     print("Running news for",username)
     api = tweepy.API(auth)
-    api.update_with_media("news.gif", "#Fortnite News\n\nSupport-a-Creator Code: CEPTNITE10")
+    api.update_with_media("news.gif", "#Fortnite News\n\nSupport-a-Creator Code:",sac)
     print('News has been posted succesfully to Twitter!')
     print('Closing program...')
     time.sleep(2)
