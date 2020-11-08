@@ -222,6 +222,30 @@ if(text == 'news'):
         api.update_with_media("feed.gif","#Fortnite News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
         print("\nTweeted image to",username+'!')
         time.sleep(5)
+        
+# NewsCR:
+if(text == 'newscr'):
+        apiurl = 'https://fortnite-api.com/v2/news/creative'
+        print('Starting News Bot for creative...')
+        response = requests.get(apiurl)
+        print("\nSaving image")
+        url = response.json()["data"]["image"]
+        r = requests.get(url, allow_redirects=True)
+        open('feed.gif', 'wb').write(r.content)
+
+        print("\nSaved image")
+
+        today = date.today()
+        d = today.strftime("%m/%d/%y")
+
+        response = requests.get(apiurl)
+        url = response.json()["data"]["image"]
+
+        print('\nTweeting image...')
+        api = tweepy.API(auth)
+        api.update_with_media("feed.gif","#Fortnite Creative News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
+        print("\nTweeted image to",username+'!')
+        time.sleep(5)
 
 # Text command
 if(text == 'text'):
