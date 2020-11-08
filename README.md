@@ -38,6 +38,6 @@ aes = Posts current AES key
 
 map = posts the current map
 
-**New** Search = Searches for a cosmetic of your choice and tweets it
+**New**  -  Search = Searches for a cosmetic of your choice and tweets it
 
 exit = exits the program
