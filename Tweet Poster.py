@@ -44,6 +44,7 @@ print('----------------------------------------------')
 print("Supported lines:\n\nshop = Posts Item Shop\nnews = Posts Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image")
 print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
+print('bar = Tweets a bar for the current season')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -57,7 +58,10 @@ if(text == 'shop'):
     print("\nOpened shop.png")
     print("\nSaved shop.png")
     api = tweepy.API(auth)
-    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code:',sac)
+    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator 
+                          
+                          
+                          '+str(sac)))
     print('Shop has been posted succesfully to',username+'!')
     print('Now closing program.')
     time.sleep(5)
@@ -91,7 +95,7 @@ if(text == 'versionbot'):
 if(text == 'leaks'):
     print("Running leaks for",username)
     api = tweepy.API(auth)
-    api.update_with_media(f'leaks.jpg', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code:',sac)
+    api.update_with_media(f'leaks.jpg', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code: '+str(sac))
     print('News has been posted succesfully to Twitter!')
     print('Closing program...')
     time.sleep(2)
@@ -199,3 +203,19 @@ if(text == 'text'):
             print('\nBro why you dissrespect me like dat im quitting now\n')
             time.sleep(3)
             exit()
+
+# bar
+if(text == 'bar'):
+    print("Running bar for",username)
+    url = 'https://api.peely.de/v1/br/progress'
+    r = requests.get(url, allow_redirects=True)
+    open('bar.png', 'wb').write(r.content)
+    print("\nOpened bar.png")
+    print("\nSaved bar.png")
+    api = tweepy.API(auth)
+    api.update_with_media(f"bar.png", '#Fortnite bar for the current season'+'\n\nSupport-a-Creator 
+                          '+str(sac))
+    print('season bar has been posted succesfully to',username+'!')
+    print('Now closing program.')
+    time.sleep(5)
+    exit()
