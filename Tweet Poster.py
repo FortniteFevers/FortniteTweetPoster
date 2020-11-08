@@ -91,12 +91,24 @@ if(text == 'versionbot'):
 # Leaks:
 if(text == 'leaks'):
     print("Running leaks for",username)
-    api = tweepy.API(auth)
-    api.update_with_media(f'leaks.jpg', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code:',sac)
-    print('News has been posted succesfully to Twitter!')
-    print('Closing program...')
-    time.sleep(2)
-    exit()
+    url = 'https://i.ibb.co/Vpc0gsx/leaks.jpg'
+    r = requests.get(url, allow_redirects=True)
+    open('leaks.png', 'wb').write(r.content)
+    print("\nOpened leaks.png")
+    print("\nSaved leaks.png")
+    print('\nDo you want to tweet out the leaks to twitter?\n')
+    searchleaks = input()
+    if(searchleaks == 'yes'):
+        print('Tweeting leaks. Give me around 5 seconds...')
+        api = tweepy.API(auth)
+        api.update_with_media(f'leaks.png', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code:'+str(sac))
+        print('\nLeaks have been posted succesfully to Twitter!')
+        print('Closing program...')
+        time.sleep(2)
+        exit()
+    else:
+        print('Not tweeting leaks.')
+        print('Closing program...')
 
 # Exit:
 if(text == 'exit'):
