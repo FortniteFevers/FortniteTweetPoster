@@ -107,7 +107,7 @@ if(text == 'leaks'):
         time.sleep(2)
         exit()
     else:
-        print('Not tweeting leaks.')
+        print('\nNot tweeting leaks.')
         print('Closing program...')
 
 # Exit:
