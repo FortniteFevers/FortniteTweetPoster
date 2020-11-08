@@ -45,7 +45,7 @@ print("Supported lines:\n\nshop = Posts Item Shop\nnews = Posts Battle Royale Ne
 print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
 print('newscr = Posts Fortnite Creative News')
-print('search = Searches for a cosmetic of your choice and tweets it. (WIP)')
+print('search = Searches for a cosmetic of your choice and tweets it.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -119,45 +119,55 @@ if(text == 'exit'):
    
 # Search
 if(text == 'search'):
+    print:('Running the search cosmetics command.')
     print('\nWhich cosmetic do you want to export',username+'?\n')
     cosmetics = input()
     print('\nUser has asked for',cosmetics+'. Saving to computer now.')
     apiurl = 'https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics)
     response = requests.get(apiurl)
-    print("\nSaving image")
+    print("\nDetecting if there is a featured icon...")
+    itemid = response.json()["data"]["id"]
     try:
-        url = response.json()["data"]["images"]["icon"]
+        if response.json()["data"]["images"]["featured"] != None:
+            print('\nA featured image has been detected!\nSaving featured icon...')
+            url = response.json()["data"]["images"]["featured"]
+            r = requests.get(url, allow_redirects=True)
+            open(f'{itemid}.png', 'wb').write(r.content)
+        else:
+            print('\nA featured image has not been detected.\nSaving icon instead.')
+            url = response.json()["data"]["images"]["icon"]
+            print(url)
+            r = requests.get(url, allow_redirects=True)
+            open(f'{itemid}.png', 'wb').write(r.content)
     except:
         print("\nAn error has been detected.")
-        time.sleep(1)
-        print('The item:',cosmetics+'has not been found.')
+        print('The item:',cosmetics+' has not been found.')
         print('\nExiting program...')
-        time.sleep(2)
         exit()
-    r = requests.get(url, allow_redirects=True)
-    open('icon.png', 'wb').write(r.content)
-    print('Image saved.')
-    time.sleep(1)
-    print('\nGetting icon info...')
-    response = requests.get('https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics))
-    itemname = response.json()["data"]['name']
-    itemdesc = response.json()["data"]['description']
-    itemrarity = response.json()["data"]['rarity']["value"]
-    introduction = response.json()["data"]['introduction']["season"]
-    print('Icon info retreived! Printing icon details...')
-    print('\nItem Details:')
-    print('\nItem Name:',itemname)
-    print('\nItem Description:',itemdesc)
-    print('\nItem Rarity:',itemrarity)
-    print('\nIntroduced in season',introduction)
-    print('\nDo you want to tweet out',itemname+'?\n')
-    searchin = input()
-    if(searchin == 'yes'):
-        print('\nTweeting out',itemname+'.')
-        api = tweepy.API(auth)
-        api.update_with_media("icon.png", str(itemname)+':'+'\n\nDescription of '+str(itemname)+': \n'+str(itemdesc)+'\n\nItem Rarity: '+str(itemrarity)+'\n\nIntroduced in season '+str(introduction))
-        print("\nTweeted",itemname+' successfully to',username+'!')
-        time.sleep(5)
+
+url = 'https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics)
+r = requests.get(url, allow_redirects=True)
+open('icon.png', 'wb').write(r.content)
+print('\nImage has been saved!')
+print('\nGetting cosmetic info...')
+response = requests.get('https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics))
+itemname = response.json()["data"]['name']
+itemdesc = response.json()["data"]['description']
+itemrarity = response.json()["data"]['rarity']["value"]
+introduction = response.json()["data"]['introduction']["season"]
+print('Cosmetic info retreived! Printing icon details...')
+print('\nItem Details:')
+print('\nItem Name:',itemname)
+print('\nItem Description:',itemdesc)
+print('\nItem Rarity:',itemrarity)
+print('\nIntroduced in season',introduction)
+print('\nDo you want to tweet out',itemname+'?\n')
+searchin = input()
+if(searchin == 'yes'):
+    print('\nTweeting out',itemname+'.')
+    api = tweepy.API(auth)
+    api.update_with_media(f'{itemid}.png', str(itemname)+':'+'\n\nDescription of '+str(itemname)+': \n'+str(itemdesc)+'\n\nItem Rarity: '+str(itemrarity)+'\n\nIntroduced in Season '+str(introduction))
+    print("\nTweeted",itemname+' successfully to',username+'!')
     
 # AES key:
 if(text == 'aes'):
@@ -279,3 +289,5 @@ if(text == 'text'):
             print('\nBro why you dissrespect me like dat im quitting now\n')
             time.sleep(3)
             exit()
+
+            
