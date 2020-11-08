@@ -26,7 +26,7 @@ shop = Posts current shop
 
 news = Posts BR news
 
-newscr = Posts creative news (Coming soon)
+newscr = Posts creative news
 
 text = Posts any text of your choice
 
