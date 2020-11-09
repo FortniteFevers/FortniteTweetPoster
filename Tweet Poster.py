@@ -18,12 +18,12 @@ print("\nCurrent date:", d2)
 
 #  Put your Twitter API keys, username, and SAC here!
 
-twitAPIKey = '6kOk2dUw92BTRmjkKViwvV03C'
-twitAPISecretKey = 'WgNvYckwnh38BtkBT7OpR1qTClITCnEdPbnASNBXOUcP71yoCb'
-twitAccessToken = '1057364060390543361-47WpnidVCdhRclTnGw8zfFlqNMqCjh'
-twitAccessTokenSecret = 'TLraey7THFNfEIeJIm9PZeRo7ZY1Ud5tm1v0SyY1I4JA4'
-username = 'FeversBot'
-sac = 'CEPTNITE10'
+twitAPIKey = 'XXXXX'
+twitAPISecretKey = 'XXXXX'
+twitAccessToken = 'XXXXX'
+twitAccessTokenSecret = 'XXXXX'
+username = 'XXXXX'
+sac = 'XXXXX'
 
 # Item Shop Config - leave both configs the same for default. Background urls are NOT supported.
 
