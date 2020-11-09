@@ -18,12 +18,12 @@ print("\nCurrent date:", d2)
 
 #  Put your Twitter API keys, username, and SAC here!
 
-twitAPIKey = 'XXXXXXX'
-twitAPISecretKey = 'XXXXXXX'
-twitAccessToken = 'XXXXXXXXXXXXXX'
-twitAccessTokenSecret = 'XXXXXXX'
-username = 'XXXXXXX'
-sac = 'XXXXXX'
+twitAPIKey = '6kOk2dUw92BTRmjkKViwvV03C'
+twitAPISecretKey = 'WgNvYckwnh38BtkBT7OpR1qTClITCnEdPbnASNBXOUcP71yoCb'
+twitAccessToken = '1057364060390543361-47WpnidVCdhRclTnGw8zfFlqNMqCjh'
+twitAccessTokenSecret = 'TLraey7THFNfEIeJIm9PZeRo7ZY1Ud5tm1v0SyY1I4JA4'
+username = 'FeversBot'
+sac = 'CEPTNITE10'
 
 # Item Shop Config - leave both configs the same for default. Background urls are NOT supported.
 
@@ -144,30 +144,29 @@ if(text == 'search'):
         print('The item:',cosmetics+' has not been found.')
         print('\nExiting program...')
         exit()
-
-url = 'https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics)
-r = requests.get(url, allow_redirects=True)
-open('icon.png', 'wb').write(r.content)
-print('\nImage has been saved!')
-print('\nGetting cosmetic info...')
-response = requests.get('https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics))
-itemname = response.json()["data"]['name']
-itemdesc = response.json()["data"]['description']
-itemrarity = response.json()["data"]['rarity']["value"]
-introduction = response.json()["data"]['introduction']["season"]
-print('Cosmetic info retreived! Printing icon details...')
-print('\nItem Details:')
-print('\nItem Name:',itemname)
-print('\nItem Description:',itemdesc)
-print('\nItem Rarity:',itemrarity)
-print('\nIntroduced in season',introduction)
-print('\nDo you want to tweet out',itemname+'?\n')
-searchin = input()
-if(searchin == 'yes'):
-    print('\nTweeting out',itemname+'.')
-    api = tweepy.API(auth)
-    api.update_with_media(f'{itemid}.png', str(itemname)+':'+'\n\nDescription of '+str(itemname)+': \n'+str(itemdesc)+'\n\nItem Rarity: '+str(itemrarity)+'\n\nIntroduced in Season '+str(introduction))
-    print("\nTweeted",itemname+' successfully to',username+'!')
+    url = 'https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics)
+    r = requests.get(url, allow_redirects=True)
+    open('icon.png', 'wb').write(r.content)
+    print('\nImage has been saved!')
+    print('\nGetting cosmetic info...')
+    response = requests.get('https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics))
+    itemname = response.json()["data"]['name']
+    itemdesc = response.json()["data"]['description']
+    itemrarity = response.json()["data"]['rarity']["value"]
+    introduction = response.json()["data"]['introduction']["season"]
+    print('Cosmetic info retreived! Printing icon details...')
+    print('\nItem Details:')
+    print('\nItem Name:',itemname)
+    print('\nItem Description:',itemdesc)
+    print('\nItem Rarity:',itemrarity)
+    print('\nIntroduced in season',introduction)
+    print('\nDo you want to tweet out',itemname+'?\n')
+    searchin = input()
+    if(searchin == 'yes'):
+        print('\nTweeting out',itemname+'.')
+        api = tweepy.API(auth)
+        api.update_with_media(f'{itemid}.png', str(itemname)+':'+'\n\nDescription of '+str(itemname)+': \n'+str(itemdesc)+'\n\nItem Rarity: '+str(itemrarity)+'\n\nIntroduced in Season '+str(introduction))
+        print("\nTweeted",itemname+' successfully to',username+'!')
     
 # AES key:
 if(text == 'aes'):
@@ -274,7 +273,7 @@ if(text == 'text'):
         print('\nDo you want to tweet something else?')
         maybetweet = input ()
     else:
-        print('\nBro why you dissrespect me like dat im quitting now\n')
+        print('\nUser has not wanted to tweet. Exiting...\n')
         time.sleep(2)
         exit()
         if(maybetweet == 'yes'):
@@ -286,7 +285,7 @@ if(text == 'text'):
             time.sleep(1)
             print('\nYour Tweet "'+text+'" has been tweeted!')
         else:
-            print('\nBro why you dissrespect me like dat im quitting now\n')
+            print('\nUser has not wanted to tweet. Exiting...\n')
             time.sleep(3)
             exit()
 
