@@ -37,8 +37,24 @@ auth = tweepy.OAuthHandler(twitAPIKey, twitAPISecretKey)
 auth.set_access_token(twitAccessToken, twitAccessTokenSecret)
 api = tweepy.API(auth)
 
+#------------------
+response = requests.get('https://pastebin.com/raw/i6UiYQX8')
+print('\n------------')
+print('Current updates:')
+ln1 = response.json()["1"]
+ln2 = response.json()["2"]
+ln3 = response.json()["3"]
+latestVersion = response.json()["currentVersion"]
+print("")
+print("")
+print(ln1)
+print(ln2)
+print('------------')
+#------------------
+
 # Starts the program and prints commands
-print('\nWelcome to FortniteTweetPoster V1,',username+'!')
+print('\n\nWelcome to FortniteTweetPoster V1,',username+'!')
+print('\nYou are on FTP version',latestVersion+'.')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
 print("Supported lines:\n\nshop = Posts Item Shop\nnews = Posts Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image")
@@ -273,7 +289,7 @@ if(text == 'text'):
         print('\nDo you want to tweet something else?')
         maybetweet = input ()
     else:
-        print('\nUser has not wanted to tweet. Exiting...\n')
+        print('\nBro why you dissrespect me like dat im quitting now\n')
         time.sleep(2)
         exit()
         if(maybetweet == 'yes'):
@@ -285,7 +301,7 @@ if(text == 'text'):
             time.sleep(1)
             print('\nYour Tweet "'+text+'" has been tweeted!')
         else:
-            print('\nUser has not wanted to tweet. Exiting...\n')
+            print('\nBro why you dissrespect me like dat im quitting now\n')
             time.sleep(3)
             exit()
 
