@@ -75,7 +75,7 @@ if(text == 'shop'):
     print("\nOpened shop.png")
     print("\nSaved shop.png")
     api = tweepy.API(auth)
-    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code:',sac)
+    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: '+str(sac))
     print('Shop has been posted succesfully to',username+'!')
     print('Now closing program.')
     time.sleep(5)
@@ -245,7 +245,7 @@ if(text == 'news'):
 
         print('\nTweeting image...')
         api = tweepy.API(auth)
-        api.update_with_media("feed.gif","#Fortnite News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
+        api.update_with_media("feed.gif","#Fortnite News Update for "+str(d2)+'\n\nSupport-a-Creator: '+str(sac))
         print("\nTweeted image to",username+'!')
         time.sleep(5)
         
