@@ -14,21 +14,26 @@ today = date.today()
 d2 = today.strftime("%B %d, %Y")
 print("\nCurrent date:", d2)
 
+seasoncountdown = datetime.date(2020, 11, 30) - datetime.date.today()
+seasoncountdown = str(seasoncountdown)
+
 #-----------------------------------------------------------------------------------------#
 
 #  Put your Twitter API keys, username, and SAC here!
 
-twitAPIKey = 'XXXXX'
-twitAPISecretKey = 'XXXXX'
-twitAccessToken = 'XXXXX'
-twitAccessTokenSecret = 'XXXXX'
-username = 'XXXXX'
-sac = 'XXXXX'
+twitAPIKey = 'XXXXXX'
+twitAPISecretKey = 'XXXXXX'
+twitAccessToken = 'XXXXXX'
+twitAccessTokenSecret = 'XXXXXX'
+username = 'XXXXXX'
+sac = 'XXXXXX'
 
 # Item Shop Config - leave both configs the same for default. Background urls are NOT supported.
 
 textcolor = 'ffffff'
 backgroundcolor = '1F1F1F'
+
+# Current season - Put the current season here
 
 #-----------------------------------------------------------------------------------------#
 
@@ -44,6 +49,8 @@ print('Current updates:')
 ln1 = response.json()["1"]
 ln2 = response.json()["2"]
 ln3 = response.json()["3"]
+seasonend = response.json()["seasonend"]
+currentseason = response.json()["currentseason"]
 latestVersion = response.json()["currentVersion"]
 print("")
 print("")
@@ -62,6 +69,7 @@ print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
 print('newscr = Posts Fortnite Creative News')
 print('search = Searches for a cosmetic of your choice and tweets it.')
+print('seasonbar = Saves and tweet the current season bar.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -75,11 +83,42 @@ if(text == 'shop'):
     print("\nOpened shop.png")
     print("\nSaved shop.png")
     api = tweepy.API(auth)
-    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: '+str(sac))
+    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code:',sac)
     print('Shop has been posted succesfully to',username+'!')
     print('Now closing program.')
     time.sleep(5)
     exit()
+
+# Runs the seasonbar command
+if(text == 'seasonbar'):
+    print('\nRunning the season bar program for',username+'...')
+    print('\nGrabbing how much days until the next season...')
+    time.sleep(1)
+    print('Grabbed the end date!')
+    print('\nSeason '+str(currentseason)+' ends in ' +str(seasoncountdown.strip("0: ,"))+'!')
+    time.sleep(1)
+    print('\nSaving the image...')
+    url = 'https://api.peely.de/v1/br/progress'
+    r = requests.get(url, allow_redirects=True)
+    open('progress.png', 'wb').write(r.content)
+    print("\nOpened progress.png")
+    time.sleep(1)
+    print("\nSaved progress.png")
+    print('\nDo you want to tweet the season bar?')
+    barif = input ()
+    if(barif == 'yes'):
+        time.sleep(1)
+        print('\nTweeting season bar. Give me around 5 seconds...')
+        api = tweepy.API(auth)
+        api.update_with_media(f'progress.png', 'Season '+str(currentseason)+' is ending in ' +str(seasoncountdown.strip("0: ,"))+'!'+'\n\n#Fortnite')
+        print('\nThe season bar has been posted succesfully to Twitter!')
+        print('Closing program...')
+        time.sleep(2)
+        exit()
+    else:
+        print('\nQuitting program...')
+        time.sleep(3)
+        exit()
 
 # VersionBot code!
 if(text == 'versionbot'):
@@ -245,7 +284,7 @@ if(text == 'news'):
 
         print('\nTweeting image...')
         api = tweepy.API(auth)
-        api.update_with_media("feed.gif","#Fortnite News Update for "+str(d2)+'\n\nSupport-a-Creator: '+str(sac))
+        api.update_with_media("feed.gif","#Fortnite News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
         print("\nTweeted image to",username+'!')
         time.sleep(5)
         
