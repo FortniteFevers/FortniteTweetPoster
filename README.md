@@ -40,4 +40,6 @@ map = posts the current map
 
 search = Searches for a cosmetic of your choice and tweets it
 
+seasonbar = Tweets the current seasonbar and how much time there is left for that season.
+
 exit = exits the program
