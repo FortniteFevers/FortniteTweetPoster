@@ -14,9 +14,6 @@ today = date.today()
 d2 = today.strftime("%B %d, %Y")
 print("\nCurrent date:", d2)
 
-seasoncountdown = datetime.date(2020, 11, 30) - datetime.date.today()
-seasoncountdown = str(seasoncountdown)
-
 #-----------------------------------------------------------------------------------------#
 
 #  Put your Twitter API keys, username, and SAC here!
@@ -59,6 +56,12 @@ print(ln2)
 print('------------')
 #------------------
 
+parsedseasonend = seasonend.split(", ")
+
+seasoncountdown = datetime.date(int(parsedseasonend[0]), int(parsedseasonend[1]), int(parsedseasonend[2])) - datetime.date.today()
+
+seasoncountdown = str(seasoncountdown)
+
 # Starts the program and prints commands
 print('\n\nWelcome to FortniteTweetPoster V1,',username+'!')
 print('\nYou are on FTP version',latestVersion+'.')
@@ -69,7 +72,8 @@ print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
 print('newscr = Posts Fortnite Creative News')
 print('search = Searches for a cosmetic of your choice and tweets it.')
-print('seasonbar = Saves and tweet the current season bar.')
+print('seasonbar = Grabs the current seasonbar and posts it to twitter.')
+print('shopimage = Posts the shop image thing')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -89,7 +93,6 @@ if(text == 'shop'):
     time.sleep(5)
     exit()
 
-# Runs the seasonbar command
 if(text == 'seasonbar'):
     print('\nRunning the season bar program for',username+'...')
     print('\nGrabbing how much days until the next season...')
@@ -263,6 +266,17 @@ if(text == 'map'):
     time.sleep(2)
     print("Finnished program. Closing in 5 seconds.")
     time.sleep(5)
+
+# Runs the Shop Image bot
+if(text == 'shopimage'):
+    print('\nStarting the shop program...')
+    api = tweepy.API(auth)
+    print('\nTweeting the shop...')
+    api.update_with_media(shopimage, '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: '+str(sac))
+    print('\nShop has been posted succesfully to Twitter!')
+    print('\nClosing program...')
+    time.sleep(2)
+    exit()
 
 # NewsBR:
 if(text == 'news'):
