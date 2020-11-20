@@ -150,9 +150,9 @@ if(text == 'versionbot'):
 # Leaks:
 if(text == 'leaks'):
     print("Running leaks for",username)
-    url = 'https://i.ibb.co/Vpc0gsx/leaks.jpg'
+    url = 'https://i.ibb.co/CBh4z5h/14-60.png'
     r = requests.get(url, allow_redirects=True)
-    open('leaks.png', 'wb').write(r.content)
+    open('14-60.png', 'wb').write(r.content)
     print("\nOpened leaks.png")
     print("\nSaved leaks.png")
     print('\nDo you want to tweet out the leaks to twitter?\n')
