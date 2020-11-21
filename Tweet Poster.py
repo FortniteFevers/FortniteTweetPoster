@@ -129,17 +129,13 @@ if(text == 'versionbot'):
     build = response.json()['currentFortniteVersion']
     paks = response.json()['totalPakCount']
     dynamicpaks = response.json()['dynamicPakCount']
-    time.sleep(1)
     print(f'\nThe current version v'+str(version)+'0'+' has been succesfully retrived!')
-    time.sleep(1)
     print('The AES key, Paks, and Build have now been retreived also.')
     time.sleep(1)
     print('\nNow tweeting status to',username+'...')
 
     api.update_status('A #Fortnite update has been detected... \n\nVersion Number: v'+str(version)+'0'+'\n\nBuild: '+str(build)+':\n\n'+str(paks)+' - Pak Files\n\n'+str(dynamicpaks)+' - Dynamic Pak Files'+'\n\n'+str(aes)+' - AES key')
-    time.sleep(5)
     print("The Fortnite Version has been succesfully tweeted to",username+'!')
-    time.sleep(1)
     print('\nNow exiting program...')
     time.sleep(2)
     exit()
@@ -231,7 +227,6 @@ if(text == 'aes'):
     response = requests.get('https://benbotfn.tk/api/v1/status')
     version = response.json()['currentFortniteVersionNumber']
     print("AES key has been succesfully retrived!\n")
-    time.sleep(1)
     print("Current AES key:")
     print(aes)
     time.sleep(1)
