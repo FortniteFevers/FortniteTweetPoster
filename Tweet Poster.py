@@ -73,7 +73,7 @@ print('map = Tweets current Battle Royale map')
 print('newscr = Posts Fortnite Creative News')
 print('search = Searches for a cosmetic of your choice and tweets it.')
 print('seasonbar = Grabs the current seasonbar and posts it to twitter.')
-print('shopimage = Posts the shop image thing')
+print('staging = Posts the current staging servers to your twitter!')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -93,6 +93,27 @@ if(text == 'shop'):
     time.sleep(5)
     exit()
 
+# Staging Servers Command
+if(text == 'staging'):
+    print('\nStarting the staging server bot...')
+    response = requests.get('https://api.peely.de/v1/staging')
+    print('\nCollecting the staging number...')
+    staging = response.json()['data']['staging']
+    response = requests.get('https://benbotfn.tk/api/v1/status')
+    version = response.json()['currentFortniteVersionNumber']
+    print(f'\nThe current version staging number and version number has been succesfully retrived!')
+    print('\nThe staging servers are on '+str(staging)+'.')
+    print('\nDo you want to tweet the staging servers?')
+    staginginput = input()
+    if(staginginput == 'yes'):
+        print('\nTweeting the current staging servers to',username+'.')
+        api = tweepy.API(auth)
+        api.update_status('#Fortnite Version Uptate:\n\nPatch v'+str(staging)+' has been added to the pre-release staging servers. Epic is currently testing this update version, and will most likely release within the upcoming week(s).')
+        print('\nSuccesfully tweeted the staging servers to',username+'.')
+        print('\n\nClosing program in 5 seconds...')
+        time.sleep(5)
+        exit()    
+    
 if(text == 'seasonbar'):
     print('\nRunning the season bar program for',username+'...')
     print('\nGrabbing how much days until the next season...')
