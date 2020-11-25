@@ -18,7 +18,7 @@ Before you run the program, make sure you have installed all the requirements.
 
 **Before you run the program, PLEASE go into Tweet Poster.py and enter in your Twitter API keys and username!**
 
-**Also, make sure to run INSTAL PACKAGES.
+**Also, make sure to run INSTAL PACKAGES.**
 
 ----------------------
 
