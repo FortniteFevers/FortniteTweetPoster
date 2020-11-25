@@ -42,4 +42,6 @@ search = Searches for a cosmetic of your choice and tweets it
 
 seasonbar = Tweets the current seasonbar and how much time there is left for that season.
 
+staging = Posts the current staging servers to your twitter!
+
 exit = exits the program
