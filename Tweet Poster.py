@@ -30,8 +30,6 @@ sac = 'XXXXXX'
 textcolor = 'ffffff'
 backgroundcolor = '1F1F1F'
 
-# Current season - Put the current season here
-
 #-----------------------------------------------------------------------------------------#
 
 # Grabs twitter api keys from settings
@@ -285,17 +283,6 @@ if(text == 'map'):
     time.sleep(2)
     print("Finnished program. Closing in 5 seconds.")
     time.sleep(5)
-
-# Runs the Shop Image bot
-if(text == 'shopimage'):
-    print('\nStarting the shop program...')
-    api = tweepy.API(auth)
-    print('\nTweeting the shop...')
-    api.update_with_media(shopimage, '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: '+str(sac))
-    print('\nShop has been posted succesfully to Twitter!')
-    print('\nClosing program...')
-    time.sleep(2)
-    exit()
 
 # NewsBR:
 if(text == 'news'):
