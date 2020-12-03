@@ -46,4 +46,8 @@ seasonbar = Tweets the current seasonbar and how much time there is left for tha
 
 staging = Posts the current staging servers to your twitter!
 
+sac = Checks for a Support A Creator code from any content creator, could or could not tweet, asks for user opinion.
+
+itemids = rabs the new and leaked item ids from the most recent update.
+
 exit = exits the program
