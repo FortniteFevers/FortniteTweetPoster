@@ -51,3 +51,5 @@ sac = Checks for a Support A Creator code from any content creator, could or cou
 itemids = rabs the new and leaked item ids from the most recent update.
 
 exit = exits the program
+
+**Want to add your own command?** If yes, go to [this link](https://docs.google.com/forms/d/e/1FAIpQLSfgMn9iOSSiMOLoSwU0rznBljradbQAeu8gLwMIhTwVrWBNnA/viewform?usp=sf_link)
