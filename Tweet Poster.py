@@ -30,6 +30,12 @@ sac = 'XXXXXX'
 textcolor = 'ffffff'
 backgroundcolor = '1F1F1F'
 
+# https://fortniteapi.io API key goes here (ONLY REPLACE THE XXXX PART):
+
+headers = {
+    'Authorization': 'XXXX'
+}
+
 #-----------------------------------------------------------------------------------------#
 
 # Grabs twitter api keys from settings
@@ -78,6 +84,8 @@ print('newscr = Posts Fortnite Creative News')
 print('search = Searches for a cosmetic of your choice and tweets it.')
 print('seasonbar = Grabs the current seasonbar and posts it to twitter.')
 print('staging = Posts the current staging servers to your twitter!')
+print('sac = Starts the Support-A-Creator checker bot!')
+print('itemids = Grabs the new and leaked item ids from the most recent update (MUST USE API)')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -390,4 +398,68 @@ if(text == 'galactus'):
         print('\n\nClosing program in 5 seconds...')
         time.sleep(5)
         exit()
-            
+        
+if(text == 'sac'):
+    print('\nrunning the sac checker bot...')
+    print('\n----SUPPORT A CREATOR CODE CHECKER----')
+    print('            Made by Fevers            ')
+
+    print('\n\nWhat code do you want to lookup?')
+    text = input()
+    print('\nGrabbing status for code '+str(text)+'...')
+
+    response = requests.get('https://fortnite-api.com/v2/creatorcode?name='+str(text))
+
+    try:
+        status = response.json()['data']['status']
+        codename = response.json()['data']['code']
+        print('\nStatus for your code has been sucesfully grabbed!')
+        print('\nThe code '+str(codename)+' is '+str(status)+'!')   
+
+        print('\nDo you want to grab the creator code ID?  -  y/n')
+        id = input()
+        if(id == 'y'):
+            print('\nGrabbing ID for code',codename)
+            codeid = response.json()['data']['account']['id']
+            print('The ID has been succesfully grabbed!')
+            print('\nThe ID for code '+str(codename)+' is '+str(codeid)+'.')
+            print('\nDo you want to tweet the results? - y/n')
+            sacresults = input()
+            if(sacresults == 'y'):
+                print('\nTweeting results now.')
+                api.update_status('I just checked the Creator Code "'+str(codename)+'" and it is '+str(status)+'!')
+                print('The results have been tweeted!')
+            else:
+                print('Quitting program...')
+                time.sleep(5)
+                exit()
+
+        if(id == 'n'):
+            print('\nExiting program...')
+            time.sleep(5)
+            exit()
+
+    except:
+        status = response.json()['status']
+        error = response.json()['error']
+        print('\nA status '+str(status)+' error has been detected!')
+        print('\nERROR: '+str(error))
+        print('\nExiting program in 5 seconds...')
+        time.sleep(5)
+        exit()
+        
+if(text == 'itemids'):
+    print('\nStarting the item ids bot!')
+    print('\nGrabbing the current leaked item ids...')
+    apiurl = 'https://fortniteapi.io/v1/items/upcoming?lang=en'
+    response = requests.get(apiurl, headers=headers)
+    #print('\n' + response.text)
+    time.sleep(1)
+    print("\nSucesfully loaded the api.")
+    print('\nGrabbing item IDs...\n')
+    for item in response.json()["items"]:
+        itemid2 = item["id"]
+        print(itemid2)
+    print('The IDs have been succesfully grabbed! Feel free to copy them!')
+    time.sleep(120)
+    exit()
