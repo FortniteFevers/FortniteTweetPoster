@@ -66,10 +66,6 @@ seasoncountdown = datetime.date(int(parsedseasonend[0]), int(parsedseasonend[1])
 
 seasoncountdown = str(seasoncountdown)
 
-
-gcount = datetime.date(2020, 12, 1) - datetime.date.today()
-gcount = str(gcount)
-
 #--------------------------------------------------------------------#
 
 # Starts the program and prints commands
@@ -99,7 +95,7 @@ if(text == 'shop'):
     print("\nOpened shop.png")
     print("\nSaved shop.png")
     api = tweepy.API(auth)
-    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code:',sac)
+    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: '+str(sac))
     print('Shop has been posted succesfully to',username+'!')
     print('Now closing program.')
     time.sleep(5)
@@ -371,33 +367,6 @@ if(text == 'text'):
             print('\nBro why you dissrespect me like dat im quitting now\n')
             time.sleep(3)
             exit()
-
-# Galactus Countdown Command
-if(text == 'galactus'):
-    print('\nStarting the galactus event time bot...')
-    time.sleep(1)
-    print('\nGrabbing the end date...')
-    print('\nThe Galactus event is in '+str(gcount.strip("0: ,"))+' days!')
-    print('\nGrabbed the end date!')
-    url = 'https://i.ibb.co/XFNt2DN/En-YKLX2-XYAAK4d.jpg'
-    r = requests.get(url, allow_redirects=True)
-    open('En-YKLX2-XYAAK4d.jpg', 'wb').write(r.content)
-    img=Image.open('En-YKLX2-XYAAK4d.jpg')
-    print("\nOpened galactus.png")
-    img.save('galactus.png')
-    os.remove('En-YKLX2-XYAAK4d.jpg')
-    print("\nSaved galactus.png")
-    print('\nDo you want to tweet the Galactus time?')
-    ginput = input()
-    if(ginput == 'yes'):
-        print('\nTweeting the Galactus event time to',username+'.')
-        api = tweepy.API(auth)
-        api.update_with_media(f'galactus.png', 'There are now '+str(gcount.strip("0: ,")+' until the Galactus event!\n\n#Fortnite'))
-        os.remove('galactus.png')
-        print('\nSuccesfully tweeted the Galactus event time to',username+'.')
-        print('\n\nClosing program in 5 seconds...')
-        time.sleep(5)
-        exit()
         
 if(text == 'sac'):
     print('\nrunning the sac checker bot...')
