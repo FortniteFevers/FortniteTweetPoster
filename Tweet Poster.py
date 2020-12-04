@@ -5,6 +5,7 @@ import subprocess
 import requests
 import PIL
 import datetime
+import json
 from datetime import date
 from PIL import Image
 
@@ -82,6 +83,7 @@ print('seasonbar = Grabs the current seasonbar and posts it to twitter.')
 print('staging = Posts the current staging servers to your twitter!')
 print('sac = Starts the Support-A-Creator checker bot!')
 print('itemids = Grabs the new and leaked item ids from the most recent update (MUST USE API)')
+print('shopsections = Tweets out the current Fortnite shop sections.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -250,7 +252,7 @@ if(text == 'search'):
     
 # AES key:
 if(text == 'aes'):
-    print('\nGetting current AES.....\n')
+    print('\nGetting current AES...\n')
     response = requests.get('https://benbotfn.tk/api/v1/aes')
     aes = response.json()['mainKey']
     response = requests.get('https://benbotfn.tk/api/v1/status')
@@ -352,7 +354,7 @@ if(text == 'text'):
         print('\nDo you want to tweet something else?')
         maybetweet = input ()
     else:
-        print('\nBro why you dissrespect me like dat im quitting now\n')
+        print('\nQuitting program...\n')
         time.sleep(2)
         exit()
         if(maybetweet == 'yes'):
@@ -432,3 +434,31 @@ if(text == 'itemids'):
     print('The IDs have been succesfully grabbed! Feel free to copy them!')
     time.sleep(120)
     exit()
+
+ if(text == 'shopsections'):
+    print('\n----FORTNITE SHOP SECTIONS BOT----')
+    print('            By Fevers             ')
+
+    print('\nGrabbing current shop sections...')
+    response = requests.get('https://benbotfn.tk/api/v1/calendar')
+
+    sections = response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds']
+
+    print('Shop sections retreived!')
+
+    print('\nConverting into json format...')
+
+    resp = json.dumps(response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds'], indent=4)
+
+    print('\n'+str(resp))
+
+    print('\n\nDo you want to tweet the Shop Sections? - y/n')
+    ss = input ()
+    if(ss == 'y'):
+        print('\nTweeting out the current shop sections...')
+        api.update_status('#Fortnite Current Shop Sections:\n\n'+str(resp))
+        print('Tweeted out the shop sections!')
+    else:
+        print('\nClosing program...')
+        time.sleep(5)
+        exit()
