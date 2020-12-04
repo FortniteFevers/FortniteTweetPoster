@@ -48,7 +48,9 @@ staging = Posts the current staging servers to your twitter!
 
 sac = Checks for a Support A Creator code from any content creator, could or could not tweet, asks for user opinion.
 
-itemids = rabs the new and leaked item ids from the most recent update.
+itemids = Grabs the new and leaked item ids from the most recent update.
+
+shopsections = Tweets out the current Fortnite shop sections.
 
 exit = exits the program
 
