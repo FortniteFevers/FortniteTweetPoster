@@ -24,6 +24,7 @@ Before you run the program, make sure you have installed all the requirements.
 
 Current commands are:
 
+
 shop = Posts current shop
 
 news = Posts BR news
