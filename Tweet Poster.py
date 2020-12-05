@@ -74,7 +74,12 @@ print('\n\nWelcome to FortniteTweetPoster V1,',username+'!')
 print('\nYou are on FTP version',latestVersion+'.')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
-print("Supported lines:\n\nshop = Posts Item Shop\nnews = Posts Battle Royale News\nText = lets you put in text to tweet\nversionbot = Starts the version bot\nleaks = Generates a new leaks image")
+print("Supported lines:\n\n")
+print('shop = Posts Item Shop')
+print('news = Posts Battle Royale News')
+print('Text = lets you put in text to tweet')
+print('versionbot = Starts the version bot')
+print('leaks = Generates a new leaks image')
 print('aes = Tweets current AES key!')
 print('map = Tweets current Battle Royale map')
 print('newscr = Posts Fortnite Creative News')
@@ -163,13 +168,19 @@ if(text == 'versionbot'):
     print(f'\nThe current version v'+str(version)+'0'+' has been succesfully retrived!')
     print('The AES key, Paks, and Build have now been retreived also.')
     time.sleep(1)
-    print('\nNow tweeting status to',username+'...')
-
-    api.update_status('A #Fortnite update has been detected... \n\nVersion Number: v'+str(version)+'0'+'\n\nBuild: '+str(build)+':\n\n'+str(paks)+' - Pak Files\n\n'+str(dynamicpaks)+' - Dynamic Pak Files'+'\n\n'+str(aes)+' - AES key')
-    print("The Fortnite Version has been succesfully tweeted to",username+'!')
-    print('\nNow exiting program...')
-    time.sleep(2)
-    exit()
+    print('\nDo you want to tweet out this? - y/n')
+    ask = input ()
+    if(ask == "y"):
+        print('\nNow tweeting status to',username+'...')
+        api.update_status('A #Fortnite update has been detected... \n\nVersion Number: v'+str(version)+'0'+'\n\nBuild: '+str(build)+':\n\n'+str(paks)+' - Pak Files\n\n'+str(dynamicpaks)+' - Dynamic Pak Files'+'\n\n'+str(aes)+' - AES key')
+        print("The Fortnite Version has been succesfully tweeted to",username+'!')
+        print('\nNow exiting program...')
+        time.sleep(2)
+        exit()
+    else:
+        print('Exiting program...')
+        time.sleep(5)
+        exit()
 
 # Leaks:
 if(text == 'leaks'):
@@ -261,13 +272,17 @@ if(text == 'aes'):
     print("Current AES key:")
     print(aes)
     time.sleep(1)
-    print("\nNow tweeting...")
-    api.update_status('AES Key for version v'+str(version)+'0'+':\n\n'+str(aes))
-    print("The AES key has been succesfully tweeted!")
-    time.sleep(1)
-    print("Cloasing program in 5 seconds....")
-    time.sleep(5)
-    exit()
+    print('\nDo you want to tweet out the current AES? - y/n')
+    ask1 = input()
+    if(ask1 == "y"):
+        print("\nNow tweeting...")
+        api.update_status('AES Key for version v'+str(version)+'0'+':\n\n'+str(aes))
+        print("The AES key has been succesfully tweeted!")
+        time.sleep(1)
+    else:
+        print("Closing program in 5 seconds....")
+        time.sleep(5)
+        exit()
 
 # Runs the map bot
 if(text == 'map'):
@@ -283,12 +298,19 @@ if(text == 'map'):
     img=img.resize((1200,1200),PIL.Image.ANTIALIAS)
     img.save('smallmap.png')
     os.remove('map.png')
-    print('\nTweeting image to',username+'...')
-    api.update_with_media('smallmap.png', 'The Fortnite Map has been Updated!\nBattle Royale map for v'+str(version)+'0')
-    print("Image has been tweeted to",username+'!')
-    time.sleep(2)
-    print("Finnished program. Closing in 5 seconds.")
-    time.sleep(5)
+    print('\nDo you want to tweet out the current map? - y/n')
+    ask = input()
+    if(ask == "y"):
+        print('\nTweeting image to',username+'...')
+        api.update_with_media('smallmap.png', 'The Fortnite Map has been Updated!\nBattle Royale map for v'+str(version)+'0')
+        print("Image has been tweeted to",username+'!')
+        time.sleep(2)
+        print("Finnished program. Closing in 5 seconds.")
+        time.sleep(5)
+    else:
+        print("\nCloasing program in 5 seconds....")
+        time.sleep(5)
+        exit()
 
 # NewsBR:
 if(text == 'news'):
