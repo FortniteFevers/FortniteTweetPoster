@@ -457,7 +457,7 @@ if(text == 'itemids'):
     time.sleep(120)
     exit()
 
- if(text == 'shopsections'):
+if(text == 'shopsections'):
     print('\n----FORTNITE SHOP SECTIONS BOT----')
     print('            By Fevers             ')
 
