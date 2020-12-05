@@ -56,3 +56,9 @@ shopsections = Tweets out the current Fortnite shop sections.
 exit = exits the program
 
 **Want to add your own command?** If yes, go to [this link](https://docs.google.com/forms/d/e/1FAIpQLSfgMn9iOSSiMOLoSwU0rznBljradbQAeu8gLwMIhTwVrWBNnA/viewform?usp=sf_link)
+
+## Credits
+
+Big thanks to [BenBot](https://benbot.stoplight.io/docs/benbot-docs) for providing us with multiple API's on the bot!
+
+Another huge thanks to [Fortnite-API](https://fortnite-api.com/) for providing us with many API's!
