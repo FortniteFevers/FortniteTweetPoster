@@ -70,7 +70,7 @@ seasoncountdown = str(seasoncountdown)
 #--------------------------------------------------------------------#
 
 # Starts the program and prints commands
-print('\n\nWelcome to FortniteTweetPoster V1,',username+'!')
+print('\nWelcome to FortniteTweetPoster V1,',username+'!')
 print('\nYou are on FTP version',latestVersion+'.')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
@@ -89,6 +89,7 @@ print('staging = Posts the current staging servers to your twitter!')
 print('sac = Starts the Support-A-Creator checker bot!')
 print('itemids = Grabs the new and leaked item ids from the most recent update (MUST USE API)')
 print('shopsections = Tweets out the current Fortnite shop sections.')
+print('notices = Grabs the most recent Fortnite In-Game notice and posts it to Twitter')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -484,3 +485,21 @@ if(text == 'shopsections'):
         print('\nClosing program...')
         time.sleep(5)
         exit()
+        
+if(text == "notices"):
+    print('Grabbing the most recent Fortnite  In-Game notice...')
+
+    response = requests.get('https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game')
+
+    fullsection = response.json()['emergencynotice']['news']['messages'][0]
+    title = response.json()['emergencynotice']['news']['messages'][0]['title']
+    body = response.json()['emergencynotice']['news']['messages'][0]['body']
+
+    print('\nGrabbed the most recent notice!')
+    print('\n'+str(title)+'\n'+str(body))
+
+    print('\nDo you want to tweet out this notice? - y/n')
+    ask = input ()
+    if(ask == "y"):
+        print('Tweeting out the notice...')
+        api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
