@@ -53,6 +53,8 @@ itemids = Grabs the new and leaked item ids from the most recent update.
 
 shopsections = Tweets out the current Fortnite shop sections.
 
+notices = Grabs the most recent Fortnite In-Game notice and posts it to Twitter.
+
 exit = exits the program
 
 **Want to add your own command?** If yes, go to [this link](https://docs.google.com/forms/d/e/1FAIpQLSfgMn9iOSSiMOLoSwU0rznBljradbQAeu8gLwMIhTwVrWBNnA/viewform?usp=sf_link)
