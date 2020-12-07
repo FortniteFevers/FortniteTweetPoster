@@ -465,13 +465,13 @@ if(text == 'shopsections'):
     print('\nGrabbing current shop sections...')
     response = requests.get('https://benbotfn.tk/api/v1/calendar')
 
-    sections = response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds']
+    sections = response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds']
 
     print('Shop sections retreived!')
 
     print('\nConverting into json format...')
 
-    resp = json.dumps(response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds'], indent=4)
+    resp = json.dumps(response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds'], indent=4)
 
     print('\n'+str(resp))
 
