@@ -288,28 +288,43 @@ if(text == 'aes'):
 # Runs the map bot
 if(text == 'map'):
     print("\nStarting program...\n")
-    url = 'https://media.fortniteapi.io/images/map.png'
-    r = requests.get(url, allow_redirects=True)
-    open('map.png', 'wb').write(r.content)
-    print("Opened map.png")
     response = requests.get('https://benbotfn.tk/api/v1/status')
     version = response.json()['currentFortniteVersionNumber']
     print("\nRetrived current version number.")
-    img=Image.open('map.png')
-    img=img.resize((1200,1200),PIL.Image.ANTIALIAS)
-    img.save('smallmap.png')
-    os.remove('map.png')
-    print('\nDo you want to tweet out the current map? - y/n')
+    print('\nDo you want to tweet out the map with or without names? w/wo')
     ask = input()
-    if(ask == "y"):
-        print('\nTweeting image to',username+'...')
-        api.update_with_media('smallmap.png', 'The Fortnite Map has been Updated!\nBattle Royale map for v'+str(version)+'0')
+    if(ask == "w"):
+        print('\nTweeting map WITHOUT NAMES to',username+'...')
+        print('\nSaving map image...')
+        url = 'https://media.fortniteapi.io/images/map.png?showPOI=true'
+        r = requests.get(url, allow_redirects=True)
+        open('map.png', 'wb').write(r.content)
+        print("Opened map.png")
+        img=Image.open('map.png')
+        img=img.resize((1200,1200),PIL.Image.ANTIALIAS)
+        img.save('smallmap.png')
+        os.remove('map.png')
+        api.update_with_media('smallmap.png', '#Fortnite Map Update (with names):\n\nBattle Royale map for v'+str(version)+'0')
         print("Image has been tweeted to",username+'!')
         time.sleep(2)
         print("Finnished program. Closing in 5 seconds.")
         time.sleep(5)
+        exit()
     else:
-        print("\nCloasing program in 5 seconds....")
+        print('\nTweeting map WITH NAMES to',username+'...')
+        print('\nSaving map image...')
+        url = 'https://media.fortniteapi.io/images/map.png'
+        r = requests.get(url, allow_redirects=True)
+        open('map.png', 'wb').write(r.content)
+        print("Opened map.png")
+        img=Image.open('map.png')
+        img=img.resize((1200,1200),PIL.Image.ANTIALIAS)
+        img.save('smallmap.png')
+        os.remove('map.png')
+        api.update_with_media('smallmap.png', '#Fortnite Map Update:\n\nBattle Royale map for v'+str(version)+'0.')
+        print("\nImage has been tweeted to",username+'!')
+        time.sleep(2)
+        print("Finnished program. Closing in 5 seconds.")
         time.sleep(5)
         exit()
 
