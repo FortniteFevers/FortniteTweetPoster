@@ -11,6 +11,11 @@ from PIL import Image
 
 today = date.today()
 
+# Program title :)
+os.system("cls")
+os.system(
+    "TITLE FortniteTweetPoster / By Fevers")
+
 # Grabs current date, and puts it into Month, Day, Year
 d2 = today.strftime("%B %d, %Y")
 print("\nCurrent date:", d2)
