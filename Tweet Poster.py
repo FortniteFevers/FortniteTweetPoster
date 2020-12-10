@@ -485,26 +485,57 @@ if(text == 'shopsections'):
     print('\nGrabbing current shop sections...')
     response = requests.get('https://benbotfn.tk/api/v1/calendar')
 
-    sections = response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds']
+    print('\nDo you want to grab sections 1 or sections 0?')
+    ask = input()
 
-    print('Shop sections retreived!')
+    if(ask == "1"):
+        print('\nUser has asked for Shop Sections (1)...')
 
-    print('\nConverting into json format...')
+        try:
+            sections = response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds']
 
-    resp = json.dumps(response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds'], indent=4)
+            print('Shop sections retreived!')
 
-    print('\n'+str(resp))
+            print('\nConverting into json format...')
 
-    print('\n\nDo you want to tweet the Shop Sections? - y/n')
-    ss = input ()
-    if(ss == 'y'):
-        print('\nTweeting out the current shop sections...')
-        api.update_status('#Fortnite Current Shop Sections:\n\n'+str(resp))
-        print('Tweeted out the shop sections!')
+            resp = json.dumps(response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds'], indent=4)
+
+            print('\n'+str(resp))
+
+            print('\n\nDo you want to tweet the Shop Sections? - y/n')
+            ss = input ()
+            if(ss == 'y'):
+                print('\nTweeting out the current shop sections...')
+                api.update_status('#Fortnite Current Shop Sections:\n\n'+str(resp))
+                print('Tweeted out the shop sections!')
+            else:
+                print('\nClosing program...')
+                time.sleep(5)
+                exit()
+        except:
+            print('\nFailed to get Shop Sections. \nShop sections (1) is inactive. Try using Shop Sections (0) instead.')
     else:
-        print('\nClosing program...')
-        time.sleep(5)
-        exit()
+        print('\nUser has asked for Shop Sections (0)...')
+        sections = response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds']
+
+        print('Shop sections retreived!')
+
+        print('\nConverting into json format...')
+
+        resp = json.dumps(response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds'], indent=4)
+
+        print('\n'+str(resp))
+
+        print('\n\nDo you want to tweet the Shop Sections? - y/n')
+        ss = input ()
+        if(ss == 'y'):
+            print('\nTweeting out the current shop sections...')
+            api.update_status('#Fortnite Current Shop Sections:\n\n'+str(resp))
+            print('Tweeted out the shop sections!')
+        else:
+            print('\nClosing program...')
+            time.sleep(5)
+            exit()
         
 if(text == "notices"):
     print('Grabbing the most recent Fortnite  In-Game notice...')
