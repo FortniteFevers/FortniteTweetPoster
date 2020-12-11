@@ -95,6 +95,7 @@ print('sac = Starts the Support-A-Creator checker bot!')
 print('itemids = Grabs the new and leaked item ids from the most recent update (MUST USE API)')
 print('shopsections = Tweets out the current Fortnite shop sections.')
 print('notices = Grabs the most recent Fortnite In-Game notice and posts it to Twitter')
+print('tournaments = Grabs the most recnet Fortnite In-Game tournament and posts it to Twitter')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -554,3 +555,44 @@ if(text == "notices"):
     if(ask == "y"):
         print('Tweeting out the notice...')
         api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
+        
+if(text == "tournaments"):
+    print('\nStarting the tournament bot...')
+
+    print('\nGrabbing the most recent tournament...')
+
+    response = requests.get('https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game')
+
+    name = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['long_format_title']
+
+    date = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['schedule_info']
+
+    desc = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['details_description']
+
+    image = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['playlist_tile_image']
+
+    print("\nSaving image...")
+    r = requests.get(image, allow_redirects=True)
+    open(f'{name}.png', 'wb').write(r.content)
+
+    print("\nSaved image!")
+
+    print('\nGrabbed the most recent tournament!')
+
+    print('\nMost recent tournament: '+str(name))
+    print('\nUntil: '+str(date))
+    print('\nDescription: '+str(desc))
+
+    print('\nDo you want to tweet this tournament? - y/n')
+    ask = input()
+    if(ask == "y"):
+        print('\nTweeting the '+str(name)+'tournament to',username+'...')
+        api.update_with_media(f'{name}.png',str(name)+':\n\nUntil '+str(date)+'\n\n'+str(desc)+'\n\n#Fortnite')
+        print(f'\nTweeted to {username}!')
+        print('\nExiting program...')
+        time.sleep(5)
+        exit()
+    else:
+        print('Closing program...')
+        time.sleep(5)
+        exit()
