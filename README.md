@@ -41,7 +41,7 @@ aes = Posts current AES key
 
 map = posts the current map
 
-search = Searches for a cosmetic of your choice and tweets it
+search = Searches for a cosmetic of your choice and tweets it **NOW SUPPORTS NEW COSMETICS!**
 
 seasonbar = Tweets the current seasonbar and how much time there is left for that season.
 
