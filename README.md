@@ -41,7 +41,7 @@ aes = Posts current AES key
 
 map = posts the current map
 
-search = Searches for a cosmetic of your choice and tweets it **NOW SUPPORTS NEW COSMETICS!**
+search = Searches for a cosmetic of your choice and tweets it    **NOW SUPPORTS NEW COSMETICS!**
 
 seasonbar = Tweets the current seasonbar and how much time there is left for that season.
 
@@ -55,7 +55,9 @@ shopsections = Tweets out the current Fortnite shop sections.
 
 notices = Grabs the most recent Fortnite In-Game notice and posts it to Twitter.
 
-Tournaments = Grabs the most recnet Fortnite In-Game tournament and posts it to Twitter
+tournaments = Grabs the most recnet Fortnite In-Game tournament and posts it to Twitter
+
+fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it to Twitter.   **NEW**
 
 exit = exits the program
 
