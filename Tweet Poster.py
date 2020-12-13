@@ -96,6 +96,7 @@ print('itemids = Grabs the new and leaked item ids from the most recent update (
 print('shopsections = Tweets out the current Fortnite shop sections.')
 print('notices = Grabs the most recent Fortnite In-Game notice and posts it to Twitter')
 print('tournaments = Grabs the most recnet Fortnite In-Game tournament and posts it to Twitter')
+print('fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it to Twitter.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -582,5 +583,39 @@ if(text == "tournaments"):
         exit()
     else:
         print('Closing program...')
+        time.sleep(5)
+        exit()
+        
+if(text == 'fortnitecrew'):
+    print('Fortnite Crew Pack checker')
+
+    print('\nStarting bot...\n')
+
+    response = requests.get('https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game')
+
+    desc = response.json()['subscription']['purchaseSubscriptionDetails']['skinDescription']
+
+    print('This months Crew Pack: '+str(desc))
+
+    print("\nSaving image...")
+    url = response.json()['subscription']['currentRewards']['itemShopTileImageURL']
+    r = requests.get(url, allow_redirects=True)
+    open('fortnitecrew.png', 'wb').write(r.content)
+
+    print("\nSaved image!")
+
+    os.remove('fortnitecrew.png')
+
+    print('\nDo you want to tweet this? - y/n')
+    ask = input()
+    if(ask == "y"):
+        print('\nTweeting this months crew pack to '+str(username)+'...')
+        api.update_with_media(f'fortnitecrew.png','This months #Fortnite Crew Bundle:\n\n'+str(desc))
+        print(f'\nTweeted to {username}!')
+        print('\nExiting program...')
+        time.sleep(5)
+        exit()
+    else:
+        print('\nClosing program...')
         time.sleep(5)
         exit()
