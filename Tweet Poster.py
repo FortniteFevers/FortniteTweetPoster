@@ -465,19 +465,19 @@ if(text == 'sac'):
         exit()
         
 if(text == 'itemids'):
-    print('\nStarting the item ids bot!')
+    print('\nStarting the leaked item ids bot!')
     print('\nGrabbing the current leaked item ids...')
-    apiurl = 'https://fortniteapi.io/v1/items/upcoming?lang=en'
-    response = requests.get(apiurl, headers=headers)
+    apiurl = 'https://fortnite-api.com/v2/cosmetics/br/new'
+    response = requests.get(apiurl)
     #print('\n' + response.text)
     time.sleep(1)
     print("\nSucesfully loaded the api.")
     print('\nGrabbing item IDs...\n')
-    for item in response.json()["items"]:
+    for item in response.json()['data']["items"]:
         itemid2 = item["id"]
         print(itemid2)
-    print('The IDs have been succesfully grabbed! Feel free to copy them!')
-    time.sleep(120)
+    print('\nThe IDs have been succesfully grabbed! Feel free to copy them!')
+    time.sleep(5)
     exit()
 
 if(text == 'shopsections'):
