@@ -65,6 +65,6 @@ exit = exits the program
 
 ## Credits
 
-Big thanks to [BenBot](https://benbot.stoplight.io/docs/benbot-docs) for providing us with multiple API's on the bot!
+Big thanks to [BenBot](https://benbot.stoplight.io/docs/benbot-docs) for providing us with multiple API's on the bot.
 
-Another huge thanks to [Fortnite-API](https://fortnite-api.com/) for providing us with many API's!
+Another huge thanks to [Fortnite-API](https://fortnite-api.com/) for providing us with many API's.
