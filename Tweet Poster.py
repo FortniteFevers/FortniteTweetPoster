@@ -528,22 +528,46 @@ if(text == 'shopsections'):
             exit()
         
 if(text == "notices"):
-    print('Grabbing the most recent Fortnite  In-Game notice...')
+    print('\nGrabbing the most recent Fortnite In-Game notice...')
 
     response = requests.get('https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game')
+    
+    print('\nDo you want to grab V1 or V2? - 1/2')
+    ask = input()
+    if(ask == "1"):
+        try:
+            fullsection = response.json()['emergencynotice']['news']['messages'][0]
+            title = response.json()['emergencynotice']['news']['messages'][0]['title']
+            body = response.json()['emergencynotice']['news']['messages'][0]['body']
 
-    fullsection = response.json()['emergencynotice']['news']['messages'][0]
-    title = response.json()['emergencynotice']['news']['messages'][0]['title']
-    body = response.json()['emergencynotice']['news']['messages'][0]['body']
+            print('\nGrabbed the most recent notice!')
+            print('\n'+str(title)+'\n'+str(body))
 
-    print('\nGrabbed the most recent notice!')
-    print('\n'+str(title)+'\n'+str(body))
+            print('\nDo you want to tweet out this notice? - y/n')
+            ask = input ()
+            if(ask == "y"):
+                print('Tweeting out the notice...')
+                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
 
-    print('\nDo you want to tweet out this notice? - y/n')
-    ask = input ()
-    if(ask == "y"):
-        print('Tweeting out the notice...')
-        api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
+        except:
+            print('\nThere is no active notice!')
+    else:
+        try:
+            fullsection = response.json()['emergencynoticev2']['news']['messages'][0]
+            title = response.json()['emergencynoticev2']['news']['messages'][0]['title']
+            body = response.json()['emergencynoticev2']['news']['messages'][0]['body']
+
+            print('\nGrabbed the most recent notice!')
+            print('\n'+str(title)+'\n'+str(body))
+
+            print('\nDo you want to tweet out this notice? - y/n')
+            ask = input ()
+            if(ask == "y"):
+                print('\nTweeting out the notice...')
+                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
+
+        except:
+            print('\nThere is no active notice!')
         
 if(text == "tournaments"):
     print('\nStarting the tournament bot...')
