@@ -196,6 +196,9 @@ if(text == 'versionbot'):
 if(text == 'leaks'):
     print("Running leaks for",username)
     r = requests.get(leaksimage, allow_redirects=True)
+    response = requests.get('https://benbotfn.tk/api/v1/status')
+    version = response.json()['currentFortniteVersionNumber']
+    print(f'\nCurrent version: v{version}0')
     print("\nOpened leaks.png")
     open('leaks.png', 'wb').write(r.content)
     print("\nSaved leaks.png")
@@ -204,7 +207,7 @@ if(text == 'leaks'):
     if(searchleaks == 'yes'):
         print('Tweeting leaks. Give me around 5 seconds...')
         api = tweepy.API(auth)
-        api.update_with_media(f'leaks.png', '#Fortnite Leaks for current version.\n\nSupport-a-Creator Code:'+str(sac))
+        api.update_with_media(f'leaks.png', '#Fortnite Leaks for v{version}0.\n\nSupport-a-Creator Code:'+str(sac))
         print('\nLeaks have been posted succesfully to Twitter!')
         print('Closing program...')
         time.sleep(2)
