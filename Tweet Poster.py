@@ -59,6 +59,7 @@ ln3 = response.json()["3"]
 seasonend = response.json()["seasonend"]
 currentseason = response.json()["currentseason"]
 latestVersion = response.json()["currentVersion"]
+leaksimage = response.json()['leaksurl']
 print("")
 print("")
 print(ln1)
@@ -194,10 +195,9 @@ if(text == 'versionbot'):
 # Leaks:
 if(text == 'leaks'):
     print("Running leaks for",username)
-    url = 'https://i.ibb.co/CBh4z5h/14-60.png'
-    r = requests.get(url, allow_redirects=True)
-    open('14-60.png', 'wb').write(r.content)
+    r = requests.get(leaksimage, allow_redirects=True)
     print("\nOpened leaks.png")
+    open('leaks.png', 'wb').write(r.content)
     print("\nSaved leaks.png")
     print('\nDo you want to tweet out the leaks to twitter?\n')
     searchleaks = input()
@@ -212,7 +212,6 @@ if(text == 'leaks'):
     else:
         print('\nNot tweeting leaks.')
         print('Closing program...')
-
 # Exit:
 if(text == 'exit'):
     print('\nExiting program....')
