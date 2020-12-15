@@ -97,6 +97,7 @@ print('shopsections = Tweets out the current Fortnite shop sections.')
 print('notices = Grabs the most recent Fortnite In-Game notice and posts it to Twitter')
 print('tournaments = Grabs the most recnet Fortnite In-Game tournament and posts it to Twitter')
 print('fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it to Twitter.')
+print('stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Twitter.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -643,3 +644,41 @@ if(text == 'fortnitecrew'):
         print('\nClosing program...')
         time.sleep(5)
         exit()
+
+if(text == 'stats'):
+    print('\nStarting the user stats bot...')
+
+    print('\nWhat name do you want to grab stats of?')
+    name = input()
+
+    try:
+        response = requests.get('https://fortnite-api.com/v1/stats/br/v2?name='+str(name))
+
+        main = response.json()['data']
+
+        realname = main['account']['name']
+
+        thing = main['battlePass']['level']
+
+        overallstats = main['stats']['all']['overall']['score']
+
+        kills = main['stats']['all']['overall']['kills']
+
+        matches = main['stats']['all']['overall']['matches']
+
+        winrate = main['stats']['all']['overall']['winRate']
+
+        print(f'\nGrabbed stats for user "{realname}"')
+
+        print(f'\n{realname} has a Battle Pass tier {thing}!\nTheir overall score is {overallstats}\nTheir overall kills is {kills}!\nTheir overall matches played is {matches}.\nTheir win-rate is {winrate}!')
+
+        print('\nDo you want to tweet out this info? - y/n')
+        ask = input()
+        if(ask == "y"):
+            print(f'Tweeting out the stats for {realname}...')
+    except:
+        print('\nAn error has occured!')
+        status = response.json()['status']
+        error = response.json()['error']
+        print(f'\nStatus: {status}\nError: {error}')
+        time.sleep(5)
