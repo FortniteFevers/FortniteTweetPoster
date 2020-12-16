@@ -627,11 +627,12 @@ if(text == 'fortnitecrew'):
     print("\nSaving image...")
     url = response.json()['subscription']['currentRewards']['itemShopTileImageURL']
     r = requests.get(url, allow_redirects=True)
-    open('fortnitecrew.png', 'wb').write(r.content)
+    with open("image.png", 'wb') as image:
+        for chunk in r:
+            image.write(chunk)
 
     print("\nSaved image!")
 
-    os.remove('fortnitecrew.png')
 
     print('\nDo you want to tweet this? - y/n')
     ask = input()
