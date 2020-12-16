@@ -586,13 +586,16 @@ if text == "tournaments":
 
     desc = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['details_description']
 
-    image = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['playlist_tile_image']
+    try:
+        image = response.json()['tournamentinformation']['tournament_info']['tournaments'][0]['playlist_tile_image']
 
-    print("\nSaving image...")
-    r = requests.get(image, allow_redirects=True)
-    open(f'{name}.png', 'wb').write(r.content)
+        print("\nSaving image...")
+        r = requests.get(image, allow_redirects=True)
+        open(f'{name}.png', 'wb').write(r.content)
 
-    print("\nSaved image!")
+        print("\nSaved image!")
+    except:
+        print('Could not find image...')
 
     print('\nGrabbed the most recent tournament!')
 
@@ -602,6 +605,7 @@ if text == "tournaments":
 
     print('\nDo you want to tweet this tournament? - y/n')
     ask = input()
+
     if ask == "y":
         print('\nTweeting the ' + str(name) + 'tournament to', username + '...')
         api.update_with_media(f'{name}.png',
