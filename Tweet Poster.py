@@ -1,12 +1,11 @@
-import tweepy
-import time
-import os
-import subprocess
-import requests
-import PIL
 import datetime
-import json
+import os
+import time
 from datetime import date
+
+import PIL
+import requests
+import tweepy
 from PIL import Image
 
 today = date.today()
@@ -20,7 +19,7 @@ os.system(
 d2 = today.strftime("%B %d, %Y")
 print("\nCurrent date:", d2)
 
-#-----------------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------------------#
 
 #  Put your Twitter API keys, username, and SAC here!
 
@@ -36,20 +35,20 @@ sac = 'XXXXXX'
 textcolor = 'ffffff'
 backgroundcolor = '1F1F1F'
 
-# https://fortniteapi.io API key goes here (ONLY REPLACE THE XXXX PART):
+# https://fortniteapi.io API key goes here (ONLY REPLACE THE XXXX PART:
 
 headers = {
     'Authorization': 'XXXX'
 }
 
-#-----------------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------------------#
 
 # Grabs twitter api keys from settings
 auth = tweepy.OAuthHandler(twitAPIKey, twitAPISecretKey)
 auth.set_access_token(twitAccessToken, twitAccessTokenSecret)
 api = tweepy.API(auth)
 
-#------------------
+# ------------------
 response = requests.get('https://pastebin.com/raw/i6UiYQX8')
 print('\n------------')
 print('Current updates:')
@@ -65,19 +64,20 @@ print("")
 print(ln1)
 print(ln2)
 print('------------')
-#------------------
+# ------------------
 
 parsedseasonend = seasonend.split(", ")
 
-seasoncountdown = datetime.date(int(parsedseasonend[0]), int(parsedseasonend[1]), int(parsedseasonend[2])) - datetime.date.today()
+seasoncountdown = datetime.date(int(parsedseasonend[0]), int(parsedseasonend[1]),
+                                int(parsedseasonend[2])) - datetime.date.today()
 
 seasoncountdown = str(seasoncountdown)
 
-#--------------------------------------------------------------------#
+# --------------------------------------------------------------------#
 
 # Starts the program and prints commands
-print('\nWelcome to FortniteTweetPoster V1,',username+'!')
-print('\nYou are on FTP version',latestVersion+'.')
+print('\nWelcome to FortniteTweetPoster V1,', username + '!')
+print('\nYou are on FTP version', latestVersion + '.')
 print('\nWhat do you want to tweet today?\n')
 print('----------------------------------------------')
 print("Supported lines:\n\n")
@@ -101,25 +101,26 @@ print('fortnitecrew = Grabs the current Fortnite Crew Bundle information and pos
 print('stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Twitter.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
-text = input ()
+text = input()
 
 # If user wants to post the shop, then....
-if(text == 'shop'):
-    print("Running shop for",username)
-    url = 'https://api.nitestats.com/v1/shop/image?footer=Creator%20Code%3A%20'+str(sac)+'&textcolor='+str(textcolor)+'&background='+str(backgroundcolor)
+if text == 'shop':
+    print("Running shop for", username)
+    url = 'https://api.nitestats.com/v1/shop/image?footer=Creator%20Code%3A%20' + str(sac) + '&textcolor=' + str(
+        textcolor) + '&background=' + str(backgroundcolor)
     r = requests.get(url, allow_redirects=True)
     open('shop.png', 'wb').write(r.content)
     print("\nOpened shop.png")
     print("\nSaved shop.png")
     api = tweepy.API(auth)
-    api.update_with_media(f"shop.png", '#Fortnite Item Shop for '+str(d2)+'\n\nSupport-a-Creator Code: '+str(sac))
-    print('Shop has been posted succesfully to',username+'!')
+    api.update_with_media(f"shop.png", '#Fortnite Item Shop for ' + str(d2) + '\n\nSupport-a-Creator Code: ' + str(sac))
+    print('Shop has been posted succesfully to', username + '!')
     print('Now closing program.')
     time.sleep(5)
     exit()
 
 # Staging Servers Command
-if(text == 'staging'):
+if text == 'staging':
     print('\nStarting the staging server bot...')
     response = requests.get('https://api.peely.de/v1/staging')
     print('\nCollecting the staging number...')
@@ -127,24 +128,25 @@ if(text == 'staging'):
     response = requests.get('https://benbotfn.tk/api/v1/status')
     version = response.json()['currentFortniteVersionNumber']
     print(f'\nThe current version staging number and version number has been succesfully retrived!')
-    print('\nThe staging servers are on '+str(staging)+'.')
+    print('\nThe staging servers are on ' + str(staging) + '.')
     print('\nDo you want to tweet the staging servers?')
     staginginput = input()
-    if(staginginput == 'yes'):
-        print('\nTweeting the current staging servers to',username+'.')
+    if staginginput == 'yes':
+        print('\nTweeting the current staging servers to', username + '.')
         api = tweepy.API(auth)
-        api.update_status('#Fortnite Version Uptate:\n\nPatch v'+str(staging)+' has been added to the pre-release staging servers. Epic is currently testing this update version, and will most likely release within the upcoming week(s).')
-        print('\nSuccesfully tweeted the staging servers to',username+'.')
+        api.update_status('#Fortnite Version Uptate:\n\nPatch v' + str(
+            staging) + ' has been added to the pre-release staging servers. Epic is currently testing this update version, and will most likely release within the upcoming week(s).')
+        print('\nSuccesfully tweeted the staging servers to', username + '.')
         print('\n\nClosing program in 5 seconds...')
         time.sleep(5)
-        exit()    
-    
-if(text == 'seasonbar'):
-    print('\nRunning the season bar program for',username+'...')
+        exit()
+
+if text == 'seasonbar':
+    print('\nRunning the season bar program for', username + '...')
     print('\nGrabbing how much days until the next season...')
     time.sleep(1)
     print('Grabbed the end date!')
-    print('\nSeason '+str(currentseason)+' ends in ' +str(seasoncountdown.strip("0: ,"))+'!')
+    print('\nSeason ' + str(currentseason) + ' ends in ' + str(seasoncountdown.strip("0: ,")) + '!')
     print('\nSaving the image...')
     url = 'https://api.peely.de/v1/br/progress'
     r = requests.get(url, allow_redirects=True)
@@ -152,11 +154,12 @@ if(text == 'seasonbar'):
     print("\nOpened progress.png")
     print("\nSaved progress.png")
     print('\nDo you want to tweet the season bar?')
-    barif = input ()
-    if(barif == 'yes'):
+    barif = input()
+    if barif == 'yes':
         print('\nTweeting season bar. Give me around 5 seconds...')
         api = tweepy.API(auth)
-        api.update_with_media(f'progress.png', 'Season '+str(currentseason)+' is ending in ' +str(seasoncountdown.strip("0: ,"))+'!'+'\n\n#Fortnite')
+        api.update_with_media(f'progress.png', 'Season ' + str(currentseason) + ' is ending in ' + str(
+            seasoncountdown.strip("0: ,")) + '!' + '\n\n#Fortnite')
         print('\nThe season bar has been posted succesfully to Twitter!')
         print('Closing program...')
         time.sleep(2)
@@ -167,7 +170,7 @@ if(text == 'seasonbar'):
         exit()
 
 # VersionBot code!
-if(text == 'versionbot'):
+if text == 'versionbot':
     response = requests.get('https://benbotfn.tk/api/v1/aes')
     aes = response.json()['mainKey']
     response = requests.get('https://benbotfn.tk/api/v1/status')
@@ -175,15 +178,18 @@ if(text == 'versionbot'):
     build = response.json()['currentFortniteVersion']
     paks = response.json()['totalPakCount']
     dynamicpaks = response.json()['dynamicPakCount']
-    print(f'\nThe current version v'+str(version)+'0'+' has been succesfully retrived!')
+    print(f'\nThe current version v' + str(version) + '0' + ' has been succesfully retrived!')
     print('The AES key, Paks, and Build have now been retreived also.')
     time.sleep(1)
     print('\nDo you want to tweet out this? - y/n')
-    ask = input ()
-    if(ask == "y"):
-        print('\nNow tweeting status to',username+'...')
-        api.update_status('A #Fortnite update has been detected... \n\nVersion Number: v'+str(version)+'0'+'\n\nBuild: '+str(build)+':\n\n'+str(paks)+' - Pak Files\n\n'+str(dynamicpaks)+' - Dynamic Pak Files'+'\n\n'+str(aes)+' - AES key')
-        print("The Fortnite Version has been succesfully tweeted to",username+'!')
+    ask = input()
+    if ask == "y":
+        print('\nNow tweeting status to', username + '...')
+        api.update_status(
+            'A #Fortnite update has been detected... \n\nVersion Number: v' + str(version) + '0' + '\n\nBuild: ' + str(
+                build) + ':\n\n' + str(paks) + ' - Pak Files\n\n' + str(
+                dynamicpaks) + ' - Dynamic Pak Files' + '\n\n' + str(aes) + ' - AES key')
+        print("The Fortnite Version has been succesfully tweeted to", username + '!')
         print('\nNow exiting program...')
         time.sleep(2)
         exit()
@@ -193,8 +199,8 @@ if(text == 'versionbot'):
         exit()
 
 # Leaks:
-if(text == 'leaks'):
-    print("Running leaks for",username)
+if text == 'leaks':
+    print("Running leaks for", username)
     r = requests.get(leaksimage, allow_redirects=True)
     response = requests.get('https://benbotfn.tk/api/v1/status')
     version = response.json()['currentFortniteVersionNumber']
@@ -204,10 +210,10 @@ if(text == 'leaks'):
     print("\nSaved leaks.png")
     print('\nDo you want to tweet out the leaks to twitter?\n')
     searchleaks = input()
-    if(searchleaks == 'yes'):
+    if searchleaks == 'yes':
         print('Tweeting leaks. Give me around 5 seconds...')
         api = tweepy.API(auth)
-        api.update_with_media(f'leaks.png', '#Fortnite Leaks for v{version}0.\n\nSupport-a-Creator Code:'+str(sac))
+        api.update_with_media(f'leaks.png', '#Fortnite Leaks for v{version}0.\n\nSupport-a-Creator Code:' + str(sac))
         print('\nLeaks have been posted succesfully to Twitter!')
         print('Closing program...')
         time.sleep(2)
@@ -216,18 +222,18 @@ if(text == 'leaks'):
         print('\nNot tweeting leaks.')
         print('Closing program...')
 # Exit:
-if(text == 'exit'):
+if text == 'exit':
     print('\nExiting program....')
     time.sleep(1)
     exit()
-   
+
 # Search
-if(text == 'search'):
-    print:('Running the search cosmetics command.')
-    print('\nWhich cosmetic do you want to export',username+'?\n')
+if text == 'search':
+    print('Running the search cosmetics command.')
+    print('\nWhich cosmetic do you want to export', username + '?\n')
     cosmetics = input()
-    print('\nUser has asked for',cosmetics+'. Saving to computer now.')
-    apiurl = 'https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics)
+    print('\nUser has asked for', cosmetics + '. Saving to computer now.')
+    apiurl = 'https://fortnite-api.com/v2/cosmetics/br/search?name=' + str(cosmetics)
     response = requests.get(apiurl)
     print("\nDetecting if there is a featured icon...")
     itemid = response.json()["data"]["id"]
@@ -245,35 +251,38 @@ if(text == 'search'):
             open(f'{itemid}.png', 'wb').write(r.content)
     except:
         print("\nAn error has been detected.")
-        print('The item:',cosmetics+' has not been found.')
+        print('The item:', cosmetics + ' has not been found.')
         print('\nExiting program...')
         exit()
-    url = 'https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics)
+    url = 'https://fortnite-api.com/v2/cosmetics/br/search?name=' + str(cosmetics)
     r = requests.get(url, allow_redirects=True)
     open('icon.png', 'wb').write(r.content)
     print('\nImage has been saved!')
     print('\nGetting cosmetic info...')
-    response = requests.get('https://fortnite-api.com/v2/cosmetics/br/search?name='+str(cosmetics))
+    response = requests.get('https://fortnite-api.com/v2/cosmetics/br/search?name=' + str(cosmetics))
     itemname = response.json()["data"]['name']
     itemdesc = response.json()["data"]['description']
     itemrarity = response.json()["data"]['rarity']["value"]
     introduction = response.json()["data"]['introduction']["season"]
     print('Cosmetic info retreived! Printing icon details...')
     print('\nItem Details:')
-    print('\nItem Name:',itemname)
-    print('\nItem Description:',itemdesc)
-    print('\nItem Rarity:',itemrarity)
-    print('\nIntroduced in season',introduction)
-    print('\nDo you want to tweet out',itemname+'?\n')
+    print('\nItem Name:', itemname)
+    print('\nItem Description:', itemdesc)
+    print('\nItem Rarity:', itemrarity)
+    print('\nIntroduced in season', introduction)
+    print('\nDo you want to tweet out', itemname + '?\n')
     searchin = input()
-    if(searchin == 'yes'):
-        print('\nTweeting out',itemname+'.')
+    if searchin == 'yes':
+        print('\nTweeting out', itemname + '.')
         api = tweepy.API(auth)
-        api.update_with_media(f'{itemid}.png', str(itemname)+':'+'\n\nDescription of '+str(itemname)+': \n'+str(itemdesc)+'\n\nItem Rarity: '+str(itemrarity)+'\n\nIntroduced in Season '+str(introduction))
-        print("\nTweeted",itemname+' successfully to',username+'!')
-    
+        api.update_with_media(f'{itemid}.png',
+                              str(itemname) + ':' + '\n\nDescription of ' + str(itemname) + ': \n' + str(
+                                  itemdesc) + '\n\nItem Rarity: ' + str(itemrarity) + '\n\nIntroduced in Season ' + str(
+                                  introduction))
+        print("\nTweeted", itemname + ' successfully to', username + '!')
+
 # AES key:
-if(text == 'aes'):
+if text == 'aes':
     print('\nGetting current AES...\n')
     response = requests.get('https://benbotfn.tk/api/v1/aes')
     aes = response.json()['mainKey']
@@ -285,9 +294,9 @@ if(text == 'aes'):
     time.sleep(1)
     print('\nDo you want to tweet out the current AES? - y/n')
     ask1 = input()
-    if(ask1 == "y"):
+    if ask1 == "y":
         print("\nNow tweeting...")
-        api.update_status('AES Key for version v'+str(version)+'0'+':\n\n'+str(aes))
+        api.update_status('AES Key for version v' + str(version) + '0' + ':\n\n' + str(aes))
         print("The AES key has been succesfully tweeted!")
         time.sleep(1)
     else:
@@ -296,164 +305,155 @@ if(text == 'aes'):
         exit()
 
 # Runs the map bot
-if(text == 'map'):
+if text == 'map':
     print("\nStarting program...\n")
     response = requests.get('https://benbotfn.tk/api/v1/status')
     version = response.json()['currentFortniteVersionNumber']
     print("\nRetrived current version number.")
     print('\nDo you want to tweet out the map with or without names? w/wo')
     ask = input()
-    if(ask == "w"):
-        print('\nTweeting map WITHOUT NAMES to',username+'...')
+    if ask == "w":
+        print('\nTweeting map WITHOUT NAMES to', username + '...')
         print('\nSaving map image...')
         url = 'https://media.fortniteapi.io/images/map.png?showPOI=true'
         r = requests.get(url, allow_redirects=True)
         open('map.png', 'wb').write(r.content)
         print("Opened map.png")
-        img=Image.open('map.png')
-        img=img.resize((1200,1200),PIL.Image.ANTIALIAS)
+        img = Image.open('map.png')
+        img = img.resize((1200, 1200), PIL.Image.ANTIALIAS)
         img.save('smallmap.png')
         os.remove('map.png')
-        api.update_with_media('smallmap.png', '#Fortnite Map Update (with names):\n\nBattle Royale map for v'+str(version)+'0')
-        print("Image has been tweeted to",username+'!')
+        api.update_with_media('smallmap.png',
+                              '#Fortnite Map Update (with names:\n\nBattle Royale map for v' + str(version) + '0')
+        print("Image has been tweeted to", username + '!')
         time.sleep(2)
         print("Finnished program. Closing in 5 seconds.")
         time.sleep(5)
         exit()
     else:
-        print('\nTweeting map WITH NAMES to',username+'...')
+        print('\nTweeting map WITH NAMES to', username + '...')
         print('\nSaving map image...')
         url = 'https://media.fortniteapi.io/images/map.png'
         r = requests.get(url, allow_redirects=True)
         open('map.png', 'wb').write(r.content)
         print("Opened map.png")
-        img=Image.open('map.png')
-        img=img.resize((1200,1200),PIL.Image.ANTIALIAS)
+        img = Image.open('map.png')
+        img = img.resize((1200, 1200), PIL.Image.ANTIALIAS)
         img.save('smallmap.png')
         os.remove('map.png')
-        api.update_with_media('smallmap.png', '#Fortnite Map Update:\n\nBattle Royale map for v'+str(version)+'0.')
-        print("\nImage has been tweeted to",username+'!')
+        api.update_with_media('smallmap.png', '#Fortnite Map Update:\n\nBattle Royale map for v' + str(version) + '0.')
+        print("\nImage has been tweeted to", username + '!')
         time.sleep(2)
         print("Finnished program. Closing in 5 seconds.")
         time.sleep(5)
         exit()
 
 # NewsBR:
-if(text == 'news'):
-        apiurl = 'https://fortnite-api.com/v2/news/br'
-        print('Starting News Bot...')
-        response = requests.get(apiurl)
-        print("\nSaving image")
-        url = response.json()["data"]["image"]
-        r = requests.get(url, allow_redirects=True)
-        open('feed.gif', 'wb').write(r.content)
+if text == 'news':
+    apiurl = 'https://fortnite-api.com/v2/news/br'
+    print('Starting News Bot...')
+    response = requests.get(apiurl)
+    print("\nSaving image")
+    url = response.json()["data"]["image"]
+    r = requests.get(url, allow_redirects=True)
+    open('feed.gif', 'wb').write(r.content)
 
-        print("\nSaved image")
+    print("\nSaved image")
 
-        today = date.today()
-        d = today.strftime("%m/%d/%y")
+    today = date.today()
+    d = today.strftime("%m/%d/%y")
 
-        response = requests.get(apiurl)
-        url = response.json()["data"]["image"]
+    response = requests.get(apiurl)
+    url = response.json()["data"]["image"]
 
-        print('\nTweeting image...')
-        api = tweepy.API(auth)
-        api.update_with_media("feed.gif","#Fortnite News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
-        print("\nTweeted image to",username+'!')
-        time.sleep(5)
-        
+    print('\nTweeting image...')
+    api = tweepy.API(auth)
+    api.update_with_media("feed.gif", "#Fortnite News Update for " + str(d) + '\n\nSupport-a-Creator: ' + str(sac))
+    print("\nTweeted image to", username + '!')
+    time.sleep(5)
+
 # NewsCR:
-if(text == 'newscr'):
-        apiurl = 'https://fortnite-api.com/v2/news/creative'
-        print('Starting News Bot for creative...')
-        response = requests.get(apiurl)
-        print("\nSaving image")
-        url = response.json()["data"]["image"]
-        r = requests.get(url, allow_redirects=True)
-        open('feed.gif', 'wb').write(r.content)
+if text == 'newscr':
+    apiurl = 'https://fortnite-api.com/v2/news/creative'
+    print('Starting News Bot for creative...')
+    response = requests.get(apiurl)
+    print("\nSaving image")
+    url = response.json()["data"]["image"]
+    r = requests.get(url, allow_redirects=True)
+    open('feed.gif', 'wb').write(r.content)
 
-        print("\nSaved image")
+    print("\nSaved image")
 
-        today = date.today()
-        d = today.strftime("%m/%d/%y")
+    today = date.today()
+    d = today.strftime("%m/%d/%y")
 
-        response = requests.get(apiurl)
-        url = response.json()["data"]["image"]
+    response = requests.get(apiurl)
+    url = response.json()["data"]["image"]
 
-        print('\nTweeting image...')
-        api = tweepy.API(auth)
-        api.update_with_media("feed.gif","#Fortnite Creative News Update for "+str(d)+'\n\nSupport-a-Creator: '+str(sac))
-        print("\nTweeted image to",username+'!')
-        time.sleep(5)
+    print('\nTweeting image...')
+    api = tweepy.API(auth)
+    api.update_with_media("feed.gif",
+                          "#Fortnite Creative News Update for " + str(d) + '\n\nSupport-a-Creator: ' + str(sac))
+    print("\nTweeted image to", username + '!')
+    time.sleep(5)
 
 # Text command
-if(text == 'text'):
-    print('\nWhat text do you want to tweet',username+'?\n')
+if text == 'text':
+    print('\nWhat text do you want to tweet', username + '?\n')
     realtext = input()
     print("\nAre you sure you want to tweet this?\n")
-    text = input ()
-    if(text == 'yes'):
+    text = input()
+    if text == 'yes':
         api.update_status(realtext)
         print("\nTweeting...")
         print('User has tweeted the text succesfully.')
         time.sleep(1)
-        print('\nYour Tweet "'+realtext+'" has been tweeted to',username+'!')
+        print('\nYour Tweet "' + realtext + '" has been tweeted to', username + '!')
         time.sleep(1)
         print('\nDo you want to tweet something else?')
-        maybetweet = input ()
+        maybetweet = input()
     else:
         print('\nQuitting program...\n')
         time.sleep(2)
         exit()
-        if(maybetweet == 'yes'):
-            print('What text do you want to tweet',username+'?')
-            textv2 = input ()
-            api.update_status(textv2)
-            print("\nTweeting...")
-            print('User has tweeted the text succesfully.')
-            time.sleep(1)
-            print('\nYour Tweet "'+text+'" has been tweeted!')
-        else:
-            print('\nBro why you dissrespect me like dat im quitting now\n')
-            time.sleep(3)
-            exit()
-        
-if(text == 'sac'):
+
+if text == 'sac':
     print('\nrunning the sac checker bot...')
     print('\n----SUPPORT A CREATOR CODE CHECKER----')
     print('            Made by Fevers            ')
 
     print('\n\nWhat code do you want to lookup?')
     text = input()
-    print('\nGrabbing status for code '+str(text)+'...')
+    print('\nGrabbing status for code ' + str(text) + '...')
 
-    response = requests.get('https://fortnite-api.com/v2/creatorcode?name='+str(text))
+    response = requests.get('https://fortnite-api.com/v2/creatorcode?name=' + str(text))
 
     try:
         status = response.json()['data']['status']
         codename = response.json()['data']['code']
         print('\nStatus for your code has been sucesfully grabbed!')
-        print('\nThe code '+str(codename)+' is '+str(status)+'!')   
+        print('\nThe code ' + str(codename) + ' is ' + str(status) + '!')
 
         print('\nDo you want to grab the creator code ID?  -  y/n')
         id = input()
-        if(id == 'y'):
-            print('\nGrabbing ID for code',codename)
+        if id == 'y':
+            print('\nGrabbing ID for code', codename)
             codeid = response.json()['data']['account']['id']
             print('The ID has been succesfully grabbed!')
-            print('\nThe ID for code '+str(codename)+' is '+str(codeid)+'.')
+            print('\nThe ID for code ' + str(codename) + ' is ' + str(codeid) + '.')
             print('\nDo you want to tweet the results? - y/n')
             sacresults = input()
-            if(sacresults == 'y'):
+            if sacresults == 'y':
                 print('\nTweeting results now.')
-                api.update_status('I just checked the Creator Code "'+str(codename)+'" and it is '+str(status)+'!')
+                api.update_status(
+                    'I just checked the Creator Code "' + str(codename) + '" and it is ' + str(status) + '!')
                 print('The results have been tweeted!')
             else:
                 print('Quitting program...')
                 time.sleep(5)
                 exit()
 
-        if(id == 'n'):
+        if id == 'n':
             print('\nExiting program...')
             time.sleep(5)
             exit()
@@ -461,18 +461,18 @@ if(text == 'sac'):
     except:
         status = response.json()['status']
         error = response.json()['error']
-        print('\nA status '+str(status)+' error has been detected!')
-        print('\nERROR: '+str(error))
+        print('\nA status ' + str(status) + ' error has been detected!')
+        print('\nERROR: ' + str(error))
         print('\nExiting program in 5 seconds...')
         time.sleep(5)
         exit()
-        
-if(text == 'itemids'):
+
+if text == 'itemids':
     print('\nStarting the leaked item ids bot!')
     print('\nGrabbing the current leaked item ids...')
     apiurl = 'https://fortnite-api.com/v2/cosmetics/br/new'
     response = requests.get(apiurl)
-    #print('\n' + response.text)
+    # print('\n' + response.text)
     time.sleep(1)
     print("\nSucesfully loaded the api.")
     print('\nGrabbing item IDs...\n')
@@ -483,7 +483,7 @@ if(text == 'itemids'):
     time.sleep(5)
     exit()
 
-if(text == 'shopsections'):
+if text == 'shopsections':
     print('\n----FORTNITE SHOP SECTIONS BOT----')
     print('            By Fevers             ')
 
@@ -493,7 +493,7 @@ if(text == 'shopsections'):
     print('\nDo you want to grab sections 1 or sections 0?')
     ask = input()
 
-    if(ask == "1"):
+    if ask == "1":
         print('\nUser has asked for Shop Sections (1)...\n')
         sections = ""
         for sectionStoreEnds in response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds']:
@@ -502,10 +502,10 @@ if(text == 'shopsections'):
 
         print(sections)
         print('Do you want to tweet the Shop Sections? - y/n')
-        ss = input ()
-        if(ss == 'y'):
+        ss = input()
+        if ss == 'y':
             print('\nTweeting out the current shop sections...')
-            api.update_status(f'#Fortnite Current Shop Sections:\n\n'+str(sections))
+            api.update_status(f'#Fortnite Current Shop Sections:\n\n' + str(sections))
             print('Tweeted out the shop sections!')
         else:
             print('\nClosing program...')
@@ -520,37 +520,37 @@ if(text == 'shopsections'):
 
         print(sections)
         print('Do you want to tweet the Shop Sections? - y/n')
-        ss = input ()
-        if(ss == 'y'):
+        ss = input()
+        if ss == 'y':
             print('\nTweeting out the current shop sections...')
-            api.update_status(f'#Fortnite Current Shop Sections:\n\n'+str(sections))
+            api.update_status(f'#Fortnite Current Shop Sections:\n\n' + str(sections))
             print('Tweeted out the shop sections!')
         else:
             print('\nClosing program...')
             time.sleep(5)
             exit()
-        
-if(text == "notices"):
+
+if text == "notices":
     print('\nGrabbing the most recent Fortnite In-Game notice...')
 
     response = requests.get('https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game')
-    
+
     print('\nDo you want to grab V1 or V2? - 1/2')
     ask = input()
-    if(ask == "1"):
+    if ask == "1":
         try:
             fullsection = response.json()['emergencynotice']['news']['messages'][0]
             title = response.json()['emergencynotice']['news']['messages'][0]['title']
             body = response.json()['emergencynotice']['news']['messages'][0]['body']
 
             print('\nGrabbed the most recent notice!')
-            print('\n'+str(title)+'\n'+str(body))
+            print('\n' + str(title) + '\n' + str(body))
 
             print('\nDo you want to tweet out this notice? - y/n')
-            ask = input ()
-            if(ask == "y"):
+            ask = input()
+            if ask == "y":
                 print('Tweeting out the notice...')
-                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
+                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n' + str(title) + '\n' + str(body))
 
         except:
             print('\nThere is no active notice!')
@@ -561,18 +561,18 @@ if(text == "notices"):
             body = response.json()['emergencynoticev2']['news']['messages'][0]['body']
 
             print('\nGrabbed the most recent notice!')
-            print('\n'+str(title)+'\n'+str(body))
+            print('\n' + str(title) + '\n' + str(body))
 
             print('\nDo you want to tweet out this notice? - y/n')
-            ask = input ()
-            if(ask == "y"):
+            ask = input()
+            if ask == "y":
                 print('\nTweeting out the notice...')
-                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
+                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n' + str(title) + '\n' + str(body))
 
         except:
             print('\nThere is no active notice!')
-        
-if(text == "tournaments"):
+
+if text == "tournaments":
     print('\nStarting the tournament bot...')
 
     print('\nGrabbing the most recent tournament...')
@@ -595,15 +595,16 @@ if(text == "tournaments"):
 
     print('\nGrabbed the most recent tournament!')
 
-    print('\nMost recent tournament: '+str(name))
-    print('\nUntil: '+str(date))
-    print('\nDescription: '+str(desc))
+    print('\nMost recent tournament: ' + str(name))
+    print('\nUntil: ' + str(date))
+    print('\nDescription: ' + str(desc))
 
     print('\nDo you want to tweet this tournament? - y/n')
     ask = input()
-    if(ask == "y"):
-        print('\nTweeting the '+str(name)+'tournament to',username+'...')
-        api.update_with_media(f'{name}.png',str(name)+':\n\nUntil '+str(date)+'\n\n'+str(desc)+'\n\n#Fortnite')
+    if ask == "y":
+        print('\nTweeting the ' + str(name) + 'tournament to', username + '...')
+        api.update_with_media(f'{name}.png',
+                              str(name) + ':\n\nUntil ' + str(date) + '\n\n' + str(desc) + '\n\n#Fortnite')
         print(f'\nTweeted to {username}!')
         print('\nExiting program...')
         time.sleep(5)
@@ -612,8 +613,8 @@ if(text == "tournaments"):
         print('Closing program...')
         time.sleep(5)
         exit()
-        
-if(text == 'fortnitecrew'):
+
+if text == 'fortnitecrew':
     print('Fortnite Crew Pack checker')
 
     print('\nStarting bot...\n')
@@ -622,7 +623,7 @@ if(text == 'fortnitecrew'):
 
     desc = response.json()['subscription']['purchaseSubscriptionDetails']['skinDescription']
 
-    print('This months Crew Pack: '+str(desc))
+    print('This months Crew Pack: ' + str(desc))
 
     print("\nSaving image...")
     url = response.json()['subscription']['currentRewards']['itemShopTileImageURL']
@@ -633,12 +634,11 @@ if(text == 'fortnitecrew'):
 
     print("\nSaved image!")
 
-
     print('\nDo you want to tweet this? - y/n')
     ask = input()
-    if(ask == "y"):
-        print('\nTweeting this months crew pack to '+str(username)+'...')
-        api.update_with_media(f'fortnitecrew.png','This months #Fortnite Crew Bundle:\n\n'+str(desc))
+    if ask == "y":
+        print('\nTweeting this months crew pack to ' + str(username) + '...')
+        api.update_with_media(f'fortnitecrew.png', 'This months #Fortnite Crew Bundle:\n\n' + str(desc))
         print(f'\nTweeted to {username}!')
         print('\nExiting program...')
         time.sleep(5)
@@ -648,14 +648,14 @@ if(text == 'fortnitecrew'):
         time.sleep(5)
         exit()
 
-if(text == 'stats'):
+if text == 'stats':
     print('\nStarting the user stats bot...')
 
     print('\nWhat name do you want to grab stats of?')
     name = input()
 
     try:
-        response = requests.get('https://fortnite-api.com/v1/stats/br/v2?name='+str(name))
+        response = requests.get('https://fortnite-api.com/v1/stats/br/v2?name=' + str(name))
 
         main = response.json()['data']
 
@@ -673,11 +673,12 @@ if(text == 'stats'):
 
         print(f'\nGrabbed stats for user "{realname}"')
 
-        print(f'\n{realname} has a Battle Pass tier {thing}!\nTheir overall score is {overallstats}\nTheir overall kills is {kills}!\nTheir overall matches played is {matches}.\nTheir win-rate is {winrate}!')
+        print(
+            f'\n{realname} has a Battle Pass tier {thing}!\nTheir overall score is {overallstats}\nTheir overall kills is {kills}!\nTheir overall matches played is {matches}.\nTheir win-rate is {winrate}!')
 
         print('\nDo you want to tweet out this info? - y/n')
         ask = input()
-        if(ask == "y"):
+        if ask == "y":
             print(f'Tweeting out the stats for {realname}...')
     except:
         print('\nAn error has occured!')
