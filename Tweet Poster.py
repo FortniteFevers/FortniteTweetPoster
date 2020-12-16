@@ -139,24 +139,26 @@ if(text == 'staging'):
         time.sleep(5)
         exit()    
     
-if(text == 'seasonbar'):
-    print('\nRunning the season bar program for',username+'...')
+if text == 'seasonbar':
+    print('\nRunning the season bar program for', username + '...')
     print('\nGrabbing how much days until the next season...')
     time.sleep(1)
     print('Grabbed the end date!')
-    print('\nSeason '+str(currentseason)+' ends in ' +str(seasoncountdown.strip("0: ,"))+'!')
+    print('\nSeason ' + str(currentseason) + ' ends in ' + str(seasoncountdown.strip("0: ,")) + '!')
     print('\nSaving the image...')
     url = 'https://api.peely.de/v1/br/progress'
     r = requests.get(url, allow_redirects=True)
+    url2 = 'https://api.peely.de/v1/br/progress/data'
+    r2 = requests.get(url2, allow_redirects=True)
     open('progress.png', 'wb').write(r.content)
     print("\nOpened progress.png")
     print("\nSaved progress.png")
     print('\nDo you want to tweet the season bar?')
-    barif = input ()
-    if(barif == 'yes'):
+    barif = input()
+    if barif == 'yes':
         print('\nTweeting season bar. Give me around 5 seconds...')
         api = tweepy.API(auth)
-        api.update_with_media(f'progress.png', 'Season '+str(currentseason)+' is ending in ' +str(seasoncountdown.strip("0: ,"))+'!'+'\n\n#Fortnite')
+        api.update_with_media(f'progress.png', f'Season {str(currentseason)} is ending in {str(seasoncountdown.strip("0: ,"))} ({round((int(r2.json()["data"]["SeasonLength"])/100)*int(r2.json()["data"]["DaysGone"]), 2)}%)!\n\n#Fortnite')
         print('\nThe season bar has been posted succesfully to Twitter!')
         print('Closing program...')
         time.sleep(2)
