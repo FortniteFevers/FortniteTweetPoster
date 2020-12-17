@@ -209,7 +209,7 @@ if(text == 'leaks'):
     if(searchleaks == 'yes'):
         print('Tweeting leaks. Give me around 5 seconds...')
         api = tweepy.API(auth)
-        api.update_with_media(f'leaks.png', '#Fortnite Leaks for v{version}0.\n\nSupport-a-Creator Code:'+str(sac))
+        api.update_with_media(f'leaks.png', '#Fortnite Leaks for v'+str(version)+'0.\n\nSupport-a-Creator Code: '+str(sac))
         print('\nLeaks have been posted succesfully to Twitter!')
         print('Closing program...')
         time.sleep(2)
@@ -217,11 +217,6 @@ if(text == 'leaks'):
     else:
         print('\nNot tweeting leaks.')
         print('Closing program...')
-# Exit:
-if(text == 'exit'):
-    print('\nExiting program....')
-    time.sleep(1)
-    exit()
    
 # Search
 if(text == 'search'):
