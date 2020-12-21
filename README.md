@@ -74,3 +74,5 @@ Another huge thanks to [Fortnite-API](https://fortnite-api.com/) for providing u
 ## Contributers
 
 Thanks, FuneeLeaks for helping me with multiple issues in the program. You can follow him [here](https://twitter.com/FuneeLeaks)
+
+Big shoutout to LamZykoss for helping out with the Spanish translations and helping with many issues on the program. You can follow him [here](https://twitter.com/LamZykoss)
