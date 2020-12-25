@@ -76,3 +76,11 @@ Another huge thanks to [Fortnite-API](https://fortnite-api.com/) for providing u
 Thanks, FuneeLeaks for helping me with multiple issues in the program. You can follow him [here](https://twitter.com/FuneeLeaks)
 
 Big shoutout to LamZykoss for helping out with the Spanish translations and helping with many issues on the program. You can follow him [here](https://twitter.com/LamZykoss)
+
+## Running the program
+
+Ways of running FortniteTweetPoster:
+
+> Running in (Python 3.9)[https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab]
+
+> If the first option is glitchy, it might have to do with your install of Python. You can fix this by **debugging** the program in (Visual Studio Code [https://code.visualstudio.com/]
