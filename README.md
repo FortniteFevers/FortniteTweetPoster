@@ -83,4 +83,4 @@ Ways of running FortniteTweetPoster:
 
 > Running in [Python 3.9](https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7?activetab=pivot:overviewtab)
 
-> If the first option is glitchy, it might have to do with your install of Python. You can fix this by **debugging** the program in [Visual Studio Code](https://code.visualstudio.com/)
+> If the first option is glitchy and or something wont work correctly, it might have to do with your install of Python. You can fix this by **debugging** the program in [Visual Studio Code](https://code.visualstudio.com/)
