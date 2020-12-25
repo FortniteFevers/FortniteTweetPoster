@@ -128,9 +128,9 @@ if(text == 'staging'):
     version = response.json()['currentFortniteVersionNumber']
     print(f'\nThe current version staging number and version number has been succesfully retrived!')
     print('\nThe staging servers are on '+str(staging)+'.')
-    print('\nDo you want to tweet the staging servers?')
+    print('\nDo you want to tweet the staging servers? - y/n')
     staginginput = input()
-    if(staginginput == 'yes'):
+    if(staginginput == 'y'):
         print('\nTweeting the current staging servers to',username+'.')
         api = tweepy.API(auth)
         api.update_status('#Fortnite Version Uptate:\n\nPatch v'+str(staging)+' has been added to the pre-release staging servers. Epic is currently testing this update version, and will most likely release within the upcoming week(s).')
@@ -138,6 +138,9 @@ if(text == 'staging'):
         print('\n\nClosing program in 5 seconds...')
         time.sleep(5)
         exit()    
+    else:
+        print('Closing program...')
+        time.sleep(5)
     
 if text == 'seasonbar':
     print('\nRunning the season bar program for', username + '...')
@@ -153,9 +156,9 @@ if text == 'seasonbar':
     open('progress.png', 'wb').write(r.content)
     print("\nOpened progress.png")
     print("\nSaved progress.png")
-    print('\nDo you want to tweet the season bar?')
+    print('\nDo you want to tweet the season bar? - y/n')
     barif = input()
-    if barif == 'yes':
+    if barif == 'y':
         print('\nTweeting season bar. Give me around 5 seconds...')
         api = tweepy.API(auth)
         api.update_with_media(f'progress.png', f'Season {str(currentseason)} is ending in {str(seasoncountdown.strip("0: ,"))} ({round((int(r2.json()["data"]["SeasonLength"])/100)*int(r2.json()["data"]["DaysGone"]), 2)}%)!\n\n#Fortnite')
@@ -164,9 +167,8 @@ if text == 'seasonbar':
         time.sleep(2)
         exit()
     else:
-        print('\nQuitting program...')
-        time.sleep(3)
-        exit()
+        print('\Closing program...')
+        time.sleep(5)
 
 # VersionBot code!
 if(text == 'versionbot'):
@@ -204,9 +206,9 @@ if(text == 'leaks'):
     print("\nOpened leaks.png")
     open('leaks.png', 'wb').write(r.content)
     print("\nSaved leaks.png")
-    print('\nDo you want to tweet out the leaks to twitter?\n')
+    print('\nDo you want to tweet out the leaks to twitter? - y/n\n')
     searchleaks = input()
-    if(searchleaks == 'yes'):
+    if(searchleaks == 'y'):
         print('Tweeting leaks. Give me around 5 seconds...')
         api = tweepy.API(auth)
         api.update_with_media(f'leaks.png', '#Fortnite Leaks for v'+str(version)+'0.\n\nSupport-a-Creator Code: '+str(sac))
@@ -217,6 +219,7 @@ if(text == 'leaks'):
     else:
         print('\nNot tweeting leaks.')
         print('Closing program...')
+        time.sleep(5)
    
 # Search
 if(text == 'search'):
@@ -261,13 +264,16 @@ if(text == 'search'):
     print('\nItem Description:',itemdesc)
     print('\nItem Rarity:',itemrarity)
     print('\nIntroduced in season',introduction)
-    print('\nDo you want to tweet out',itemname+'?\n')
+    print('\nDo you want to tweet out',itemname+'? - y/n\n')
     searchin = input()
-    if(searchin == 'yes'):
+    if(searchin == 'y'):
         print('\nTweeting out',itemname+'.')
         api = tweepy.API(auth)
         api.update_with_media(f'{itemid}.png', str(itemname)+':'+'\n\nDescription of '+str(itemname)+': \n'+str(itemdesc)+'\n\nItem Rarity: '+str(itemrarity)+'\n\nIntroduced in Season '+str(introduction))
         print("\nTweeted",itemname+' successfully to',username+'!')
+    else:
+        print('Closing program...')
+        time.sleep(5)
     
 # AES key:
 if(text == 'aes'):
@@ -288,7 +294,7 @@ if(text == 'aes'):
         print("The AES key has been succesfully tweeted!")
         time.sleep(1)
     else:
-        print("Closing program in 5 seconds....")
+        print("Closing program....")
         time.sleep(5)
         exit()
 
@@ -387,9 +393,9 @@ if(text == 'newscr'):
 if(text == 'text'):
     print('\nWhat text do you want to tweet',username+'?\n')
     realtext = input()
-    print("\nAre you sure you want to tweet this?\n")
+    print("\nAre you sure you want to tweet this? - y/n\n")
     text = input ()
-    if(text == 'yes'):
+    if(text == 'y'):
         api.update_status(realtext)
         print("\nTweeting...")
         print('User has tweeted the text succesfully.')
@@ -399,10 +405,10 @@ if(text == 'text'):
         print('\nDo you want to tweet something else?')
         maybetweet = input ()
     else:
-        print('\nQuitting program...\n')
+        print('\nClosing program...\n')
         time.sleep(2)
         exit()
-        if(maybetweet == 'yes'):
+        if(maybetweet == 'y'):
             print('What text do you want to tweet',username+'?')
             textv2 = input ()
             api.update_status(textv2)
@@ -411,7 +417,7 @@ if(text == 'text'):
             time.sleep(1)
             print('\nYour Tweet "'+text+'" has been tweeted!')
         else:
-            print('\nBro why you dissrespect me like dat im quitting now\n')
+            print('\nClosing program...\n')
             time.sleep(3)
             exit()
         
