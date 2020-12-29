@@ -38,16 +38,15 @@ backgroundcolor = '1F1F1F'
 
 # https://fortniteapi.io API key goes here (ONLY REPLACE THE XXXX PART):
 
-headers = {
-    'Authorization': 'XXXX'
-}
-
+apikey = 'XXXXX'
 #-----------------------------------------------------------------------------------------#
 
 # Grabs twitter api keys from settings
 auth = tweepy.OAuthHandler(twitAPIKey, twitAPISecretKey)
 auth.set_access_token(twitAccessToken, twitAccessTokenSecret)
 api = tweepy.API(auth)
+
+headers = {'Authorization': apikey}
 
 #------------------
 response = requests.get('https://pastebin.com/raw/i6UiYQX8')
