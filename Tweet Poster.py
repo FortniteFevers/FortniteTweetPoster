@@ -553,7 +553,8 @@ if(text == "notices"):
             if(ask == "y"):
                 print('Tweeting out the notice...')
                 api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
-
+                print('\nTweeted notice!')
+                              
         except:
             print('\nThere is no active notice!')
     else:
@@ -570,7 +571,8 @@ if(text == "notices"):
             if(ask == "y"):
                 print('\nTweeting out the notice...')
                 api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
-
+                print('\nTweeted notice!')
+                              
         except:
             print('\nThere is no active notice!')
         
