@@ -98,6 +98,7 @@ print('notices = Grabs the most recent Fortnite In-Game notice and posts it to T
 print('tournaments = Grabs the most recnet Fortnite In-Game tournament and posts it to Twitter')
 print('fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it to Twitter.')
 print('stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Twitter.')
+print('fish = Grabs a fish of your choice, grabs the info and image, posts it to Twitter.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -507,7 +508,7 @@ if(text == 'shopsections'):
         ss = input ()
         if(ss == 'y'):
             print('\nTweeting out the current shop sections...')
-            api.update_status(f'#Fortnite Current Shop Sections:\n\n'+str(sections))
+            api.update_status(f'Tonights #Fortnite leaked Shop Sections:\n\n'+str(sections))
             print('Tweeted out the shop sections!')
         else:
             print('\nClosing program...')
@@ -694,3 +695,61 @@ if(text == 'stats'):
         error = response.json()['error']
         print(f'\nStatus: {status}\nError: {error}')
         time.sleep(5)
+
+# Da fishey command                              
+if(text == 'fish'):
+    response = requests.get('https://fortniteapi.io/v1/loot/fish?lang=en', headers=headers)
+
+    print('\nWhat fish do you want to grab fisherman? - (Capitals Count)')
+    arg = input()
+
+    fish = response.json()["fish"]
+
+    for i in fish:
+        if i['name'] == arg:
+            print(f'\nFound the {i["name"]} fish.\n')
+            print(f'ID: {i["id"]}')
+            print(f'Description: {i["description"]}')
+            print(f'Details: {i["details"]}')
+            print(f'Rarity: {i["rarity"]}')
+            print('\nSaving image...')
+            url = i['image']
+            r = requests.get(url, allow_redirects=True)
+            open(f'{arg}.png', 'wb').write(r.content)
+            print('Saved image!')
+
+    print(f'\nDo you want to Tweet out this info for the {arg} fish? - y/n')
+    ask = input()
+    if(ask == "y"):
+        print(f'\nTweeting out the info for {arg}...')
+        api.update_with_media(f'{arg}.png', f'{i["name"]}:\n\nID: {i["id"]}\nDescription: {i["description"]}\nRarity: {i["rarity"]}')
+        print('\nDone!')
+        print('\nDo you want to delete the image? - y/n')
+        ask1 = input()
+        if(ask1 == 'y'):
+            print('\nDeleting image...')
+            os.remove(f'{arg}.png')
+            print('\nRemoved image!')
+            time.sleep(2)
+            print('Closing program...')
+            time.sleep(5)
+        else:
+            print('\nSaving image.')
+            time.sleep(2)
+    else:
+        print('\nNot Tweeting da fishy')
+        print('\nDo you want to delete the image? - y/n')
+        ask1 = input()
+        if(ask1 == 'y'):
+            print('\nDeleting image...')
+            os.remove(f'{arg}.png')
+            print('\nRemoved image!')
+            time.sleep(2)
+            print('\nClosing program...')
+            time.sleep(5)
+            exit()
+        else:
+            print('\nKeeping image.')
+            time.sleep(2)
+            print('\nClosing program...')
+            exit()                              
