@@ -61,6 +61,8 @@ fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it t
 
 stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Twitter.
 
+fish = Grabs a fish of your choice, grabs the info and image, posts it to Twitter. **NEW**
+
 exit = exits the program
 
 **Want to add your own command?** If yes, go to [this link](https://docs.google.com/forms/d/e/1FAIpQLSfgMn9iOSSiMOLoSwU0rznBljradbQAeu8gLwMIhTwVrWBNnA/viewform?usp=sf_link)
