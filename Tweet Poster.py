@@ -488,20 +488,23 @@ if(text == 'itemids'):
 
 if(text == 'shopsections'):
     print('\n----FORTNITE SHOP SECTIONS BOT----')
-    print('            By Fevers             ')
 
     print('\nGrabbing current shop sections...')
-    response = requests.get('https://benbotfn.tk/api/v1/calendar')
+    response = requests.get('https://fn-api.com/api/epic/calendar')
 
-    print('\nDo you want to grab sections 1 or sections 0?')
+    print('\nDo you want to grab sections 1 or sections 0? - 1/0')
     ask = input()
 
     if(ask == "1"):
         print('\nUser has asked for Shop Sections (1)...\n')
         sections = ""
-        for sectionStoreEnds in response.json()['channels']['client-events']['states'][1]['state']['sectionStoreEnds']:
-            section2 = sectionStoreEnds
-            sections += "• " + section2 + "\n"
+        try:
+            for sectionStoreEnds in response.json()['data']['channels']['client-events']['states'][1]['state']['sectionStoreEnds']:
+                section2 = sectionStoreEnds
+                sections += "• " + section2 + "\n"
+        except:
+            print('Tonights Shop Sections were not found, most likely due to them not being published yet.')
+            time.sleep(5)
 
         print(sections)
         print('Do you want to tweet the Shop Sections? - y/n')
@@ -517,7 +520,7 @@ if(text == 'shopsections'):
     else:
         print('\nUser has asked for Shop Sections (0)...\n')
         sections = ""
-        for sectionStoreEnds in response.json()['channels']['client-events']['states'][0]['state']['sectionStoreEnds']:
+        for sectionStoreEnds in response.json()['data']['channels']['client-events']['states'][0]['state']['sectionStoreEnds']:
             section2 = sectionStoreEnds
             sections += "• " + section2 + "\n"
 
