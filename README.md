@@ -73,6 +73,8 @@ Big thanks to [BenBot](https://benbot.stoplight.io/docs/benbot-docs) for providi
 
 Another huge thanks to [Fortnite-API](https://fortnite-api.com/) for providing us with many API's.
 
+Calender API provided by [FN-API](https://fn-api.com/)
+
 ## Contributers
 
 Thanks, FuneeLeaks for helping me with multiple issues in the program. You can follow him [here](https://twitter.com/FuneeLeaks)
