@@ -537,27 +537,32 @@ if(text == 'shopsections'):
             exit()
         
 if(text == "notices"):
-    print('\nGrabbing the most recent Fortnite In-Game notice...')
+    print('\nGrabbing the current Fortnite In-Game notice(s)...')
 
-    response = requests.get('https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game')
-    
-    print('\nDo you want to grab V1 or V2? - 1/2')
+    response = requests.get('https://fn-api.com/api/emergencynotice')
+
+    message = response.json()['messages']
+
+    try:
+        for i in message:
+            title = i['title']
+            body = i['body']
+            x = len(message)
+            print(f'\nMessage {x}:\n{title}\n{body}\n')
+            twme = f'\n{title}\n{body}\n'
+    except:
+        print('Notice not found!')
+        time.sleep(5)
+
+    print('Do you want to Tweet out these notices?')
     ask = input()
-    if(ask == "1"):
-        try:
-            fullsection = response.json()['emergencynotice']['news']['messages'][0]
-            title = response.json()['emergencynotice']['news']['messages'][0]['title']
-            body = response.json()['emergencynotice']['news']['messages'][0]['body']
-
-            print('\nGrabbed the most recent notice!')
-            print('\n'+str(title)+'\n'+str(body))
-
-            print('\nDo you want to tweet out this notice? - y/n')
-            ask = input ()
-            if(ask == "y"):
-                print('Tweeting out the notice...')
-                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
-                print('\nTweeted notice!')
+    if ask == 'y':
+        print('\nTweeting current notices...')
+        api.update_status(f'Current #Fortnite notices:\n {twme}')
+        print('\nDone!')
+    else:
+        print('Not tweeting notices.')
+        time.sleep(5)
                               
         except:
             print('\nThere is no active notice!')
