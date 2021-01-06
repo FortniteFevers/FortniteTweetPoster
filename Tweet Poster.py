@@ -551,10 +551,10 @@ if(text == "notices"):
             print(f'\nMessage {x}:\n{title}\n{body}\n')
             twme = f'\n{title}\n{body}\n'
     except:
-        print('Notice not found!')
+        print('There is no active notice!')
         time.sleep(5)
 
-    print('Do you want to Tweet out these notices?')
+    print('Do you want to Tweet out these notices? - y/n')
     ask = input()
     if ask == 'y':
         print('\nTweeting current notices...')
@@ -563,27 +563,6 @@ if(text == "notices"):
     else:
         print('Not tweeting notices.')
         time.sleep(5)
-                              
-        except:
-            print('\nThere is no active notice!')
-    else:
-        try:
-            fullsection = response.json()['emergencynoticev2']['news']['messages'][0]
-            title = response.json()['emergencynoticev2']['news']['messages'][0]['title']
-            body = response.json()['emergencynoticev2']['news']['messages'][0]['body']
-
-            print('\nGrabbed the most recent notice!')
-            print('\n'+str(title)+'\n'+str(body))
-
-            print('\nDo you want to tweet out this notice? - y/n')
-            ask = input ()
-            if(ask == "y"):
-                print('\nTweeting out the notice...')
-                api.update_status('Most recent Fortnite Notice | #Fortnite\n\n'+str(title)+'\n'+str(body))
-                print('\nTweeted notice!')
-                              
-        except:
-            print('\nThere is no active notice!')
         
 if(text == "tournaments"):
     print('\nStarting the tournament bot...')
