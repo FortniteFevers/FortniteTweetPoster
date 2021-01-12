@@ -543,26 +543,48 @@ if(text == "notices"):
 
     message = response.json()['messages']
 
-    try:
-        for i in message:
-            title = i['title']
-            body = i['body']
-            x = len(message)
-            print(f'\nMessage {x}:\n{title}\n{body}\n')
-            twme = f'\n{title}\n{body}\n'
-    except:
-        print('There is no active notice!')
-        time.sleep(5)
-
-    print('Do you want to Tweet out these notices? - y/n')
+    print('Grab all or nah - y/n')
     ask = input()
     if ask == 'y':
-        print('\nTweeting current notices...')
-        api.update_status(f'Current #Fortnite notices:\n {twme}')
-        print('\nDone!')
+        twme = ''
+        try:
+            for i in message:
+                title = i['title']
+                body = i['body']
+                x = len(message)
+                print(f'\nMessage {x}:\n{title}\n{body}\n')
+                tw2 = i
+                twme = f'\n{title}\n{body}\n'
+        except:
+            print('Notice not found!')
+            time.sleep(5)
+
+        print('Do you want to Tweet out these notices? - y/n')
+        ask = input()
+        if ask == 'y':
+            print('\nTweeting current notices...')
+            api.update_status(f'New #Fortnite notice:\n {twme}')
+            print('\nDone!')
+        else:
+            print('Not tweeting notices.')
+            time.sleep(5)
     else:
-        print('Not tweeting notices.')
-        time.sleep(5)
+        print('\nok fam lol')
+        i = response.json()['messages'][0]
+        title = i['title']
+        body = i['body']
+        twme = f'\n{title}\n{body}\n'
+        print('\nGrabbed Notice!')
+        print(f'{twme}\n')
+        print('Do you want to Tweet out these notices? - y/n')
+        ask = input()
+        if ask == 'y':
+            print('\nTweeting current notices...')
+            api.update_status(f'New #Fortnite notice:\n {twme}')
+            print('\nDone!')
+        else:
+            print('Not tweeting notices.')
+            time.sleep(5) 
         
 if(text == "tournaments"):
     print('\nStarting the tournament bot...')
