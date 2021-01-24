@@ -99,6 +99,7 @@ print('tournaments = Grabs the most recnet Fortnite In-Game tournament and posts
 print('fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it to Twitter.')
 print('stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Twitter.')
 print('fish = Grabs a fish of your choice, grabs the info and image, posts it to Twitter.')
+print('weapons = Grabs a weapon of your choice, crabs the info of image, posts it to Twitter.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
@@ -762,3 +763,59 @@ if(text == 'fish'):
             time.sleep(2)
             print('\nClosing program...')
             exit()                              
+                              
+if(text == 'weapons'):
+    response = requests.get('https://fortniteapi.io/v1/loot/list?lang=en', headers=headers)
+    print('\nDo you want to input an ID (1) or a name (2)?')
+    ask1 = input()
+    print('\nWhat weapon do you want to grab?')
+    arg = input('>> ')
+
+    weapons = response.json()["weapons"]
+    
+    if ask1 == '2':
+        print(f'Grabbed {arg}.')
+    else:
+        print(f'Grabbed {arg}.')
+
+    for i in weapons:
+        if ask1 == '2':
+            if i['name'] == arg:
+                print(f'\nFound the {i["name"]} weapon.')
+                print(f'\nID: {i["id"]}')
+                print(f'\nDescription: {i["description"]}')
+                print(f'\nRarity: {i["rarity"]}')
+
+                url = i["images"]["background"]
+                r = requests.get(url, allow_redirects=True)
+                open(f'weapons/{i["id"]}.png', 'wb').write(r.content)
+                print('\nSaved Image!')
+            
+        else:
+            if i['id'] == arg:
+                print(f'\nFound the {i["name"]} weapon.')
+                print(f'\nID: {i["id"]}')
+                print(f'\nDescription: {i["description"]}')
+                print(f'\nRarity: {i["rarity"]}')
+
+
+                url = i["images"]["background"]
+                r = requests.get(url, allow_redirects=True)
+                open(f'weapons/{i["id"]}.png', 'wb').write(r.content)
+                print('\nSaved Image!')
+                if ask1 == '1':
+                    print('\nDo you want to Tweet the weapon? - y/n')
+                    ask = input('>> ')
+                    if ask == 'y':
+                        print('\nTweeting...')
+                        try:
+                            api.update_with_media(f'weapons/{arg}.png', f'{i["name"]}weapon:\n\nID: {i["id"]}\n\nDescription: {i["description"]}\n\nRarity: {i["rarity"]}')
+                            print('Done!')
+                        except:
+                            api.update_with_media(f'weapons/{arg}.png', f'{i["name"]}weapon:\n\nID: {i["id"]}')
+                            print('Done!')
+                        time.sleep(2)
+                        exit()
+    print('Can not tweet due to putting in a name instead of an ID.')
+    time.sleep(2)
+    exit()
