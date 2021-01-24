@@ -63,6 +63,8 @@ stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Tw
 
 fish = Grabs a fish of your choice, grabs the info and image, posts it to Twitter.
 
+weapons = Grabs a weapon of your choice, crabs the info of image, posts it to Twitter.
+
 exit = exits the program
 
 **Want to add your own command?** If yes, go to [this link](https://docs.google.com/forms/d/e/1FAIpQLSfgMn9iOSSiMOLoSwU0rznBljradbQAeu8gLwMIhTwVrWBNnA/viewform?usp=sf_link)
