@@ -99,7 +99,7 @@ print('tournaments = Grabs the most recnet Fortnite In-Game tournament and posts
 print('fortnitecrew = Grabs the current Fortnite Crew Bundle information and posts it to Twitter.')
 print('stats = Grabs the stats of a Fortnite account, gets the info, and posts it to Twitter.')
 print('fish = Grabs a fish of your choice, grabs the info and image, posts it to Twitter.')
-print('weapons = Grabs a weapon of your choice, crabs the info of image, posts it to Twitter.')
+print('weapons = Grabs a weapon of your choice, grabs the info of image, posts it to Twitter.')
 print('exit = exit the program')
 print('----------------------------------------------\n')
 text = input ()
