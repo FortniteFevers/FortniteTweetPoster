@@ -224,7 +224,7 @@ if(text == 'leaks'):
    
 # Search
 if(text == 'search'):
-    print:('Running the search cosmetics command.')
+    print('Running the search cosmetics command.')
     print('\nWhich cosmetic do you want to export',username+'?\n')
     cosmetics = input()
     print('\nUser has asked for',cosmetics+'. Saving to computer now.')
