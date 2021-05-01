@@ -1,4 +1,4 @@
-# FortniteTweetPoster
+# FortniteTweetPoster (DISCONTINUED)
 
 ## Welcome to FortniteTweetPoster!
 
